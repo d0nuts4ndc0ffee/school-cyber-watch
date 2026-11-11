@@ -17,6 +17,7 @@ The site is a static page (`index.html`) that loads three data files. A daily re
   "sector": "K-12",
   "place": "Richmond, Virginia",
   "country": "United States",
+  "state": "Virginia",
   "date": "2026-10-21",
   "dateApprox": false,
   "type": "ransom",
@@ -34,11 +35,13 @@ The site is a static page (`index.html`) that loads three data files. A daily re
 }
 ```
 
-Required: `id`, `name`, `sector`, `place`, `country`, `date`, `dateApprox`, `type`, `impacts`, `summary`, `sources`, `status`, `addedAt`, `updatedAt`.
+Required: `id`, `name`, `sector`, `place`, `country`, `state` (US records only), `date`, `dateApprox`, `type`, `impacts`, `summary`, `sources`, `status`, `addedAt`, `updatedAt`.
 Optional (leave out when unknown, never guess): `people`, `peopleNote`, `closure`, `actor`, `ransom`.
 
 Allowed values:
 - `sector`: `K-12`, `Higher ed`, `Shared platform` (a vendor, network or department serving many schools)
+- `country`: full English name (`United States`, `United Kingdom`, ...). Use `Worldwide` only for a platform or vendor breach that hit schools in many countries.
+- `state`: required when `country` is `United States`. Full state name (`Virginia`, not `VA`); `District of Columbia` for DC; `Nationwide` for a US-only platform or agency serving schools in many states. Leave it out for non-US records.
 - `type`: `ransom` (ransomware), `breach` (data breach), `access` (unauthorized access), `vendor` (breach at a supplier or platform), `other` (attack of unspecified kind)
 - `impacts`: any of `closure` (classes or campus cancelled), `outage` (systems taken down), `data` (personal data exposed or stolen), `extortion` (ransom demand or leak threat)
 - `status`: `unconfirmed` or `confirmed`
@@ -46,7 +49,7 @@ Allowed values:
 
 ## Rules for each run
 
-1. **Scope.** Schools, school districts, colleges, universities, and platforms or authorities serving schools, anywhere in the world. The incident must be a cyberattack: ransomware, a data breach, unauthorized access, or an attack that shut down systems. Skip outages with no sign of an attack, phishing warnings with no incident, and lawsuits about old breaches unless they reveal new facts.
+1. **Scope.** The tracker focuses on the **United States**: US schools, school districts, colleges, universities, and platforms or agencies serving them. Cover the US thoroughly. Outside the US, record only significant incidents (a school or campus closed, data on 10,000 or more people, or a national system disrupted). The incident must be a cyberattack: ransomware, a data breach, unauthorized access, or an attack that shut down systems. Skip outages with no sign of an attack, phishing warnings with no incident, and lawsuits about old breaches unless they reveal new facts.
 2. **Match before adding.** Compare each find with existing records by school name and place. If it matches, update that record and set `updatedAt`. Never create a second record for the same incident. A new `id` is the school name in lowercase with hyphens.
 3. **Confirmation.** A new record starts as `unconfirmed` unless an official notice from the school or authority, or two independent outlets, report it. Promote a record to `confirmed` when that bar is met, and add the new source.
 4. **Claims.** Numbers or attributions that come only from attackers are labelled "(claimed)" or "claimed by the attackers".

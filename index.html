@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>School Cyber Watch</title>
+<script>try{var t=localStorage.getItem('scw-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -130,6 +131,13 @@ dd{margin:0}
 /* Ask */
 .hint{font-size:13px;color:var(--muted);margin:6px 0 0}
 
+/* Theme switch */
+.band-side{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.theme{display:inline-flex;gap:2px;padding:2px;border:1px solid color-mix(in srgb,var(--band-ink) 28%,transparent);border-radius:999px}
+.theme button{background:none;border:0;color:var(--band-muted);font:500 12px/1 var(--mono);padding:6px 11px;border-radius:999px;cursor:pointer}
+.theme button:hover{color:var(--band-ink)}
+.theme button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+@media (max-width:640px){.band-side{align-items:flex-start}.stamp{text-align:left}}
 /* Daily-update additions */
 .unconf{font:500 10px/16px var(--mono);text-transform:uppercase;letter-spacing:.06em;border:1px dashed var(--muted);color:var(--muted);padding:0 5px;border-radius:3px;margin-left:6px;vertical-align:2px;white-space:nowrap}
 .new.upd{background:none;color:var(--ink);border:1px solid var(--accent)}
@@ -154,14 +162,21 @@ footer p{max-width:80ch;margin:0 0 8px}
   <div class="wrap">
     <div>
       <h1>School Cyber <span>Watch</span></h1>
-      <p class="lede">Schools, colleges and universities hit by ransomware, data breaches, unauthorized access and system shutdowns. Updated every morning. Every record links to its source.</p>
+      <p class="lede">US schools, colleges and universities hit by ransomware, data breaches, unauthorized access and system shutdowns. Updated every morning. Every record links to its source.</p>
     </div>
-    <div class="stamp" id="stamp">Loading the latest records…</div>
+    <div class="band-side">
+      <div class="theme" role="group" aria-label="Colour theme">
+        <button type="button" data-theme-opt="auto" aria-pressed="true">Auto</button>
+        <button type="button" data-theme-opt="light" aria-pressed="false">Light</button>
+        <button type="button" data-theme-opt="dark" aria-pressed="false">Dark</button>
+      </div>
+      <div class="stamp" id="stamp">Loading the latest records…</div>
+    </div>
   </div>
 </header>
 
 <div class="wrap">
-  <section class="stats" aria-label="Summary" id="stats"><div class="stat"><b>–</b><span>incidents on record</span></div><div class="stat"><b>–</b><span>closed a school or campus</span></div><div class="stat"><b>–</b><span>involved ransomware</span></div><div class="stat"><b>–</b><span>countries</span></div></section>
+  <section class="stats" aria-label="Summary" id="stats"><div class="stat"><b>–</b><span>incidents on record</span></div><div class="stat"><b>–</b><span>closed a school or campus</span></div><div class="stat"><b>–</b><span>involved ransomware</span></div><div class="stat"><b>–</b><span>states</span></div></section>
 
   <section class="panel tl" aria-label="Timeline of incidents">
     <div class="tl-head">
@@ -175,7 +190,7 @@ footer p{max-width:80ch;margin:0 0 8px}
   <section class="controls" aria-label="Filters">
     <div class="row1">
       <input class="search" id="q" type="search" placeholder="Search a school, place, attacker or keyword" aria-label="Search incidents">
-      <select id="country" aria-label="Country"></select>
+      <select id="loc" aria-label="Location"></select>
       <select id="sort" aria-label="Sort order">
         <option value="new">Newest first</option>
         <option value="old">Oldest first</option>
@@ -235,7 +250,9 @@ const isNew = r => r.addedAt !== LAUNCH && fresh(r.addedAt);
 const isUpdated = r => !isNew(r) && r.updatedAt && r.updatedAt !== r.addedAt && fresh(r.updatedAt);
 const big = n => n >= 1e6 ? (n/1e6).toFixed(n >= 1e7 ? 0 : 1).replace(/\.0$/,'') + 'M' : n >= 1e3 ? Math.round(n/1e3) + 'K' : String(n);
 
-const state = {q:'', type:'all', sector:'all', closure:false, unconf:false, country:'all', sort:'new', sel:null};
+const state = {q:'', type:'all', sector:'all', closure:false, unconf:false, loc:'us', sort:'new', sel:null};
+const isUS = r => r.country === 'United States' || r.country === 'Worldwide';
+const inLoc = (r, loc = state.loc) => loc === 'all' ? true : loc === 'us' ? isUS(r) : loc === 'intl' ? !isUS(r) : r.country === 'United States' && r.state === loc.slice(3);
 const wide = window.matchMedia('(min-width: 900px)');
 
 function filtered(){
@@ -245,8 +262,8 @@ function filtered(){
     (state.sector === 'all' || r.sector === state.sector) &&
     (!state.closure || r.impacts.includes('closure')) &&
     (!state.unconf || r.status === 'unconfirmed') &&
-    (state.country === 'all' || r.country === state.country) &&
-    (!q || [r.name,r.place,r.country,r.summary,r.actor,TYPES[r.type]?.label,r.sector].join(' ').toLowerCase().includes(q)));
+    inLoc(r) &&
+    (!q || [r.name,r.place,r.state,r.country,r.summary,r.actor,TYPES[r.type]?.label,r.sector].join(' ').toLowerCase().includes(q)));
   if (state.sort === 'new') out.sort((a,b) => ts(b.date) - ts(a.date));
   if (state.sort === 'old') out.sort((a,b) => ts(a.date) - ts(b.date));
   if (state.sort === 'added') out.sort((a,b) => ts(b.updatedAt||b.addedAt) - ts(a.updatedAt||a.addedAt) || ts(b.date) - ts(a.date));
@@ -254,16 +271,23 @@ function filtered(){
   return out;
 }
 
-function renderHeader(){
-  const closed = DATA.filter(r => r.impacts.includes('closure')).length;
-  const ransom = DATA.filter(r => r.type === 'ransom').length;
-  const countries = new Set(DATA.map(r => r.country).filter(c => c !== 'Worldwide')).size;
+function renderStats(){
+  const base = DATA.filter(r => inLoc(r));
+  const us = state.loc !== 'all' && state.loc !== 'intl';
+  const closed = base.filter(r => r.impacts.includes('closure')).length;
+  const ransom = base.filter(r => r.type === 'ransom').length;
+  const places = us ? new Set(base.map(r => r.state).filter(Boolean)).size
+                    : new Set(base.map(r => r.country).filter(c => c !== 'Worldwide')).size;
+  const where = state.loc.startsWith('st:') ? ' in ' + state.loc.slice(3) : us ? ' in the US' : state.loc === 'intl' ? ' outside the US' : '';
   $('#stats').innerHTML = [
-    [DATA.length,'incidents on record'],
+    [base.length, 'incidents' + where],
     [closed,'closed a school or campus'],
     [ransom,'involved ransomware'],
-    [countries,'countries']
-  ].map(([n,l]) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+    [places, us ? (places === 1 ? 'state' : 'states') : 'countries']
+  ].map(([n,l]) => `<div class="stat"><b>${n}</b><span>${esc(l)}</span></div>`).join('');
+}
+
+function renderHeader(){
   const last = META.lastRunAt ? fmtStamp.format(new Date(META.lastRunAt)) : 'not yet';
   const start = META.coverageStart ? fmtMonth.format(ts(META.coverageStart)) : 'Jan 2026';
   $('#stamp').innerHTML = `Last updated <b>${esc(last)}</b><br>Coverage <b>${esc(start)} to now</b><br><b>${DATA.length}</b> sourced records`;
@@ -294,8 +318,13 @@ function renderControls(){
     `<button class="chip" data-sector="${s}">${s === 'all' ? 'All sectors' : s}</button>`).join('') +
     `<span class="sep" aria-hidden="true"></span><button class="chip toggle" id="closureChip">Closed a school</button>` +
     `<button class="chip toggle" id="unconfChip">Unconfirmed</button>`;
-  const countries = [...new Set(DATA.map(r => r.country))].sort();
-  $('#country').innerHTML = `<option value="all">All countries</option>` + countries.map(c => `<option>${esc(c)}</option>`).join('');
+  const n = f => DATA.filter(f).length;
+  const states = [...new Set(DATA.filter(r => r.country === 'United States' && r.state).map(r => r.state))].sort();
+  $('#loc').innerHTML =
+    `<option value="us">United States (${n(isUS)})</option>` +
+    (states.length ? `<optgroup label="By state">${states.map(st => `<option value="st:${esc(st)}">${esc(st)} (${n(r => r.country === 'United States' && r.state === st)})</option>`).join('')}</optgroup>` : '') +
+    `<optgroup label="Beyond the US"><option value="intl">Outside the US (${n(r => !isUS(r))})</option><option value="all">Everywhere (${DATA.length})</option></optgroup>`;
+  $('#loc').value = state.loc;
 }
 
 function syncChips(){
@@ -377,7 +406,9 @@ function render(){
   const rows = filtered();
   const match = new Set(rows.map(r => r.id));
   if (!match.has(state.sel) && rows.length) state.sel = rows[0].id;
-  $('#count').textContent = rows.length === DATA.length ? `Showing all ${DATA.length} incidents` : `Showing ${rows.length} of ${DATA.length} incidents`;
+  renderStats();
+  const scope = DATA.filter(r => inLoc(r)).length;
+  $('#count').textContent = rows.length === scope ? `Showing all ${scope} incidents` : `Showing ${rows.length} of ${scope} incidents`;
   const list = $('#list');
   const record = $('#record');
   if (wide.matches) $('#aside').appendChild(record);
@@ -401,13 +432,14 @@ function render(){
 }
 
 function clearFilters(){
-  Object.assign(state,{q:'',type:'all',sector:'all',closure:false,unconf:false,country:'all'});
-  $('#q').value=''; $('#country').value='all';
+  Object.assign(state,{q:'',type:'all',sector:'all',closure:false,unconf:false,loc:'us'});
+  $('#q').value=''; $('#loc').value='us';
 }
 
 function select(id, scroll){
   state.sel = id;
   if (!filtered().some(r => r.id === id)) clearFilters();
+  if (!filtered().some(r => r.id === id)){ state.loc = 'all'; $('#loc').value = 'all'; }
   render();
   if (scroll) document.querySelector(`.row[data-id="${CSS.escape(id)}"]`)?.scrollIntoView({block:'nearest'});
 }
@@ -430,7 +462,22 @@ document.addEventListener('click', e => {
   }
 });
 $('#q').addEventListener('input', e => { state.q = e.target.value; render(); });
-$('#country').addEventListener('change', e => { state.country = e.target.value; render(); });
+$('#loc').addEventListener('change', e => { state.loc = e.target.value; render(); });
+
+/* Theme: Auto follows the device; Light and Dark are remembered in this browser */
+function syncTheme(){
+  const cur = document.documentElement.getAttribute('data-theme') || 'auto';
+  document.querySelectorAll('[data-theme-opt]').forEach(b => b.setAttribute('aria-pressed', b.dataset.themeOpt === cur));
+}
+document.querySelector('.theme').addEventListener('click', e => {
+  const t = e.target.closest('[data-theme-opt]')?.dataset.themeOpt;
+  if (!t) return;
+  if (t === 'auto') document.documentElement.removeAttribute('data-theme');
+  else document.documentElement.setAttribute('data-theme', t);
+  try { t === 'auto' ? localStorage.removeItem('scw-theme') : localStorage.setItem('scw-theme', t); } catch (_) {}
+  syncTheme();
+});
+syncTheme();
 $('#sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
 wide.addEventListener('change', () => DATA.length && render());
 let rz; new ResizeObserver(() => { clearTimeout(rz); rz = setTimeout(() => DATA.length && renderTimeline(new Set(filtered().map(r => r.id))), 80); }).observe($('#plot'));
@@ -445,7 +492,7 @@ async function load(){
     LOG = [...log].sort((a,b) => ts(b.date) - ts(a.date));
     LAUNCH = LOG.length ? LOG[LOG.length-1].date : '';
     if (META.lastRunAt) TODAY = new Date(Math.max(Date.now(), Date.parse(META.lastRunAt))).toISOString().slice(0,10);
-    state.sel = [...DATA].sort((a,b) => ts(b.date) - ts(a.date))[0]?.id;
+    state.sel = [...DATA].filter(r => inLoc(r)).sort((a,b) => ts(b.date) - ts(a.date))[0]?.id;
     renderHeader(); renderControls(); renderChanges(); render();
   }catch(err){
     $('#count').textContent = '';
