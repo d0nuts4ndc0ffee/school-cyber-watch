@@ -5,35 +5,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>School Cyber Watch</title>
 <script>try{var t=localStorage.getItem('scw-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<meta name="description" content="A daily-updated tracker of cyberattacks on US schools, colleges and universities: ransomware, data breaches, unauthorized access and system shutdowns, each linked to its source.">
+<meta property="og:title" content="School Cyber Watch">
+<meta property="og:description" content="Scanning the web every morning for cyberattacks on US schools. Every record links to its source.">
+<meta property="og:image" content="https://d0nuts4ndc0ffee.github.io/school-cyber-watch/assets/social-banner.jpg">
+<meta property="og:url" content="https://d0nuts4ndc0ffee.github.io/school-cyber-watch/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#061630">
+<link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* Layout idea: a chalkboard band on top, a term-calendar timeline as the signature, then register (list) + record card (detail). */
+/* Layout idea: a navy radar banner on top, a term-calendar timeline as the signature, then register (list) + record card (detail). */
 :root{
-  --bg:#ECEFEA; --surface:#FAFBF8; --ink:#14211D; --muted:#56655F; --line:#D2D9D2;
-  --accent:#F2B705; --accent-ink:#14211D; --link:#1F5D4C;
-  --band-bg:#1B4438; --band-ink:#F3F6F0; --band-muted:#B4CCC2;
-  --t-ransom:#BF3528; --t-breach:#6444BF; --t-access:#1C6BB3; --t-vendor:#A85A06; --t-other:#56655F;
-  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --bg:#EEF2F8; --surface:#FBFCFE; --ink:#0C1A2E; --muted:#56657A; --line:#D3DCE8;
+  --accent:#F2B705; --accent-ink:#0C1A2E; --link:#1C5FB0;
+  --band-bg:#061630; --band-ink:#EAF3FF; --band-muted:#9FB6D3; --cyan:#3CC4FF;
+  --t-ransom:#BF3528; --t-breach:#6444BF; --t-access:#1C6BB3; --t-vendor:#A85A06; --t-other:#56657A;
+  --display:"Rajdhani","Arial Narrow",sans-serif;
   --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#0E1916; --surface:#15231F; --ink:#E8EEE7; --muted:#9BAEA6; --line:#2A3C36;
-    --accent:#F2B705; --accent-ink:#14211D; --link:#8FD3BA;
-    --band-bg:#15231F; --band-ink:#F3F6F0; --band-muted:#9BAEA6;
-    --t-ransom:#FF8A7B; --t-breach:#B9A6FF; --t-access:#80BEF3; --t-vendor:#F0A95A; --t-other:#9BAEA6;
+    --bg:#050F1F; --surface:#0B1A31; --ink:#E5EDF8; --muted:#90A3BC; --line:#1B2E4B;
+    --accent:#F2B705; --accent-ink:#0C1A2E; --link:#7CC4FF;
+    --t-ransom:#FF8A7B; --t-breach:#B9A6FF; --t-access:#80BEF3; --t-vendor:#F0A95A; --t-other:#90A3BC;
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0E1916; --surface:#15231F; --ink:#E8EEE7; --muted:#9BAEA6; --line:#2A3C36;
-  --accent:#F2B705; --accent-ink:#14211D; --link:#8FD3BA;
-  --band-bg:#15231F; --band-ink:#F3F6F0; --band-muted:#9BAEA6;
-  --t-ransom:#FF8A7B; --t-breach:#B9A6FF; --t-access:#80BEF3; --t-vendor:#F0A95A; --t-other:#9BAEA6;
+  --bg:#050F1F; --surface:#0B1A31; --ink:#E5EDF8; --muted:#90A3BC; --line:#1B2E4B;
+  --accent:#F2B705; --accent-ink:#0C1A2E; --link:#7CC4FF;
+  --t-ransom:#FF8A7B; --t-breach:#B9A6FF; --t-access:#80BEF3; --t-vendor:#F0A95A; --t-other:#90A3BC;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -45,20 +52,40 @@ a{color:var(--link)}
 .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
 .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
 
-/* Band */
-.band{background:var(--band-bg);color:var(--band-ink);border-bottom:4px solid var(--accent)}
-.band .wrap{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 32px;padding-top:26px;padding-bottom:22px}
-h1{font:800 clamp(40px,7vw,68px)/.9 var(--display);letter-spacing:.01em;text-transform:uppercase;margin:0}
-h1 span{color:var(--accent)}
-.lede{margin:10px 0 0;max-width:52ch;color:var(--band-muted)}
-.stamp{font:400 12px/1.6 var(--mono);color:var(--band-muted);text-align:right}
+/* Banner */
+.band{position:relative;overflow:hidden;color:var(--band-ink);background:
+  radial-gradient(ellipse 60% 90% at 82% 50%,rgba(40,140,255,.22),transparent 70%),
+  linear-gradient(100deg,#03102A 0%,#071E46 55%,#0A2B5E 100%)}
+.band::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:linear-gradient(rgba(120,190,255,.07) 1px,transparent 1px) 0 0/34px 34px,linear-gradient(90deg,rgba(120,190,255,.07) 1px,transparent 1px) 0 0/34px 34px;
+  -webkit-mask-image:linear-gradient(90deg,transparent 30%,#000 75%);mask-image:linear-gradient(90deg,transparent 30%,#000 75%)}
+.band::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;
+  background:radial-gradient(ellipse 40% 100% at 50% 50%,var(--cyan),rgba(60,196,255,.25) 60%,rgba(60,196,255,.12))}
+#radar{position:absolute;top:0;right:0;height:100%;width:min(52%,620px);pointer-events:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 35%);mask-image:linear-gradient(90deg,transparent,#000 35%)}
+.banner{position:relative;display:flex;align-items:center;gap:28px;padding-top:34px;padding-bottom:30px}
+.logo{width:92px;height:auto;flex:none;filter:drop-shadow(0 0 18px rgba(60,196,255,.35))}
+.divider{flex:none;width:1px;align-self:stretch;margin:4px 0;background:linear-gradient(transparent,var(--cyan),transparent);box-shadow:0 0 12px rgba(60,196,255,.7)}
+.titles{min-width:0;max-width:640px}
+h1{font:700 clamp(38px,6.2vw,70px)/.95 var(--display);letter-spacing:.03em;text-transform:uppercase;margin:0;filter:drop-shadow(0 0 22px rgba(46,140,255,.35))}
+h1 .t-cy{background:linear-gradient(90deg,#7FD8FF,#3CA4FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1 .t-au{background:linear-gradient(90deg,#FFD46A,#E9A520);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tagline{display:flex;align-items:center;gap:10px;margin:10px 0 0;font:600 clamp(14px,1.7vw,19px)/1.2 var(--display);letter-spacing:.08em;text-transform:uppercase;color:#DCEBFF}
+.tagline svg{flex:none;color:var(--cyan)}
+.lede{margin:12px 0 0;max-width:56ch;color:var(--band-muted)}
+.statusbar{position:relative;border-top:1px solid rgba(160,200,255,.12);background:rgba(2,10,28,.45)}
+.statusbar .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding-top:9px;padding-bottom:11px}
+.stamp{font:400 12px/1.6 var(--mono);color:var(--band-muted)}
 .stamp b{color:var(--band-ink);font-weight:500}
+.stamp .dot{margin:0 8px;opacity:.5}
+@media (max-width:720px){.divider{display:none}.banner{gap:16px;align-items:flex-start}.logo{width:60px;margin-top:4px}#radar{width:80%;opacity:.55}}
+@media (max-width:460px){.banner{flex-direction:column}.logo{width:56px}}
 
 /* Summary */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:22px 0 0;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
 .stat{padding:14px 16px;border-left:1px solid var(--line)}
 .stat:first-child{border-left:0}
-.stat b{display:block;font:800 34px/1 var(--display)}
+.stat b{display:block;font:700 34px/1 var(--display)}
 .stat span{color:var(--muted);font-size:13px}
 @media (max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(3){border-left:0}.stat:nth-child(n+3){border-top:1px solid var(--line)}}
 
@@ -116,7 +143,7 @@ ul.list li+li{border-top:1px solid var(--line)}
 .record{padding:18px}
 @media (min-width:900px){aside{position:sticky;top:14px}}
 li .record{border-top:1px dashed var(--line);background:var(--bg)}
-.record h3{font:800 30px/1 var(--display);text-transform:uppercase;letter-spacing:.01em;margin:8px 0 4px;text-wrap:balance}
+.record h3{font:700 30px/1 var(--display);text-transform:uppercase;letter-spacing:.01em;margin:8px 0 4px;text-wrap:balance}
 .record .where{color:var(--muted);margin:0 0 12px}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
 .tag{font-size:12px;line-height:20px;padding:0 8px;border-radius:4px;background:color-mix(in srgb,var(--ink) 8%,transparent)}
@@ -132,12 +159,10 @@ dd{margin:0}
 .hint{font-size:13px;color:var(--muted);margin:6px 0 0}
 
 /* Theme switch */
-.band-side{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
 .theme{display:inline-flex;gap:2px;padding:2px;border:1px solid color-mix(in srgb,var(--band-ink) 28%,transparent);border-radius:999px}
 .theme button{background:none;border:0;color:var(--band-muted);font:500 12px/1 var(--mono);padding:6px 11px;border-radius:999px;cursor:pointer}
 .theme button:hover{color:var(--band-ink)}
 .theme button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
-@media (max-width:640px){.band-side{align-items:flex-start}.stamp{text-align:left}}
 /* Daily-update additions */
 .unconf{font:500 10px/16px var(--mono);text-transform:uppercase;letter-spacing:.06em;border:1px dashed var(--muted);color:var(--muted);padding:0 5px;border-radius:3px;margin-left:6px;vertical-align:2px;white-space:nowrap}
 .new.upd{background:none;color:var(--ink);border:1px solid var(--accent)}
@@ -159,18 +184,24 @@ footer p{max-width:80ch;margin:0 0 8px}
 </head>
 <body>
 <header class="band">
-  <div class="wrap">
-    <div>
-      <h1>School Cyber <span>Watch</span></h1>
+  <canvas id="radar" aria-hidden="true"></canvas>
+  <div class="wrap banner">
+    <img class="logo" src="assets/logo.png" alt="" width="249" height="297">
+    <span class="divider" aria-hidden="true"></span>
+    <div class="titles">
+      <h1><span class="t-cy">School Cyber</span> <span class="t-au">Watch</span></h1>
+      <p class="tagline"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="1.6" fill="currentColor"/><path d="M8.5 15.5a5 5 0 0 1 0-7"/><path d="M5.3 18.7a9.5 9.5 0 0 1 0-13.4"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.7 5.3a9.5 9.5 0 0 1 0 13.4"/></svg>Scanning the web for school cyber incidents</p>
       <p class="lede">US schools, colleges and universities hit by ransomware, data breaches, unauthorized access and system shutdowns. Updated every morning. Every record links to its source.</p>
     </div>
-    <div class="band-side">
+  </div>
+  <div class="statusbar">
+    <div class="wrap">
+      <div class="stamp" id="stamp">Loading the latest records…</div>
       <div class="theme" role="group" aria-label="Colour theme">
         <button type="button" data-theme-opt="auto" aria-pressed="true">Auto</button>
         <button type="button" data-theme-opt="light" aria-pressed="false">Light</button>
         <button type="button" data-theme-opt="dark" aria-pressed="false">Dark</button>
       </div>
-      <div class="stamp" id="stamp">Loading the latest records…</div>
     </div>
   </div>
 </header>
@@ -290,7 +321,7 @@ function renderStats(){
 function renderHeader(){
   const last = META.lastRunAt ? fmtStamp.format(new Date(META.lastRunAt)) : 'not yet';
   const start = META.coverageStart ? fmtMonth.format(ts(META.coverageStart)) : 'Jan 2026';
-  $('#stamp').innerHTML = `Last updated <b>${esc(last)}</b><br>Coverage <b>${esc(start)} to now</b><br><b>${DATA.length}</b> sourced records`;
+  $('#stamp').innerHTML = `Last updated <b>${esc(last)}</b><span class="dot">·</span>Coverage <b>${esc(start)} to now</b><span class="dot">·</span><b>${DATA.length}</b> sourced records`;
 }
 
 function renderChanges(){
@@ -482,6 +513,84 @@ $('#sort').addEventListener('change', e => { state.sort = e.target.value; render
 wide.addEventListener('change', () => DATA.length && render());
 let rz; new ResizeObserver(() => { clearTimeout(rz); rz = setTimeout(() => DATA.length && renderTimeline(new Set(filtered().map(r => r.id))), 80); }).observe($('#plot'));
 
+
+/* Banner radar: recent incidents appear as blips that light up as the sweep passes */
+const radar = (() => {
+  const cv = document.getElementById('radar');
+  const ctx = cv.getContext('2d');
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let W = 0, H = 0, dpr = 1, blips = [], raf = 0, visible = true, t0 = performance.now();
+  const hash = s => { let h = 2166136261; for (const c of s) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return (h >>> 0) / 4294967295; };
+  const stars = Array.from({length: 46}, (_, i) => ({a: hash('a' + i) * Math.PI * 2, r: .15 + hash('r' + i) * .85}));
+  function size(){
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (!raf) draw(performance.now());
+  }
+  function draw(now){
+    raf = 0;
+    if (!W || !H) return;
+    const cx = W - Math.min(W, H) * .62, cy = H / 2, R = Math.min(H * .78, W * .62);
+    const sweep = still.matches ? -0.6 : ((now - t0) / 4200) * Math.PI * 2 % (Math.PI * 2);
+    ctx.clearRect(0, 0, W, H);
+    ctx.lineWidth = 1;
+    // globe body
+    const g = ctx.createRadialGradient(cx - R * .3, cy - R * .3, R * .1, cx, cy, R);
+    g.addColorStop(0, 'rgba(40,120,220,.20)'); g.addColorStop(1, 'rgba(10,40,100,.05)');
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
+    // rings and globe lines
+    ctx.strokeStyle = 'rgba(110,190,255,.20)';
+    for (let k = 1; k <= 4; k++){ ctx.beginPath(); ctx.arc(cx, cy, R * k / 4, 0, Math.PI * 2); ctx.stroke(); }
+    ctx.strokeStyle = 'rgba(110,190,255,.11)';
+    for (let k = 1; k < 6; k++){ ctx.beginPath(); ctx.ellipse(cx, cy, Math.abs(R * Math.sin(k * Math.PI / 6)), R, 0, 0, Math.PI * 2); ctx.stroke(); }
+    for (let k = -2; k <= 2; k++){ const y = cy + R * Math.sin(k * Math.PI / 7), hw = R * Math.cos(k * Math.PI / 7); ctx.beginPath(); ctx.ellipse(cx, y, hw, hw * .18, 0, 0, Math.PI * 2); ctx.stroke(); }
+    ctx.beginPath(); ctx.moveTo(cx - R, cy); ctx.lineTo(cx + R, cy); ctx.moveTo(cx, cy - R); ctx.lineTo(cx, cy + R); ctx.stroke();
+    // sweep wedge
+    const span = 1.1;
+    if (ctx.createConicGradient){
+      const cg = ctx.createConicGradient(sweep - span, cx, cy);
+      cg.addColorStop(0, 'rgba(60,196,255,0)'); cg.addColorStop(span / (Math.PI * 2), 'rgba(60,196,255,.38)'); cg.addColorStop(span / (Math.PI * 2) + .0001, 'rgba(60,196,255,0)');
+      ctx.fillStyle = cg;
+    } else ctx.fillStyle = 'rgba(60,196,255,.14)';
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, R, sweep - span, sweep); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = 'rgba(140,220,255,.85)'; ctx.lineWidth = 1.5; ctx.shadowColor = '#3CC4FF'; ctx.shadowBlur = 12;
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(sweep) * R, cy + Math.sin(sweep) * R); ctx.stroke();
+    ctx.shadowBlur = 0;
+    // faint background points
+    ctx.fillStyle = 'rgba(150,210,255,.35)';
+    for (const p of stars){ ctx.beginPath(); ctx.arc(cx + Math.cos(p.a) * p.r * R, cy + Math.sin(p.a) * p.r * R, .9, 0, Math.PI * 2); ctx.fill(); }
+    // incident blips
+    for (const b of blips){
+      const since = ((sweep - b.a) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
+      const glow = still.matches ? .8 : Math.max(.22, 1 - since / (Math.PI * 1.6));
+      const x = cx + Math.cos(b.a) * b.r * R, y = cy + Math.sin(b.a) * b.r * R;
+      ctx.fillStyle = b.col.replace('A', (glow * .28).toFixed(3));
+      ctx.beginPath(); ctx.arc(x, y, 4 + 7 * glow, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = b.col.replace('A', glow.toFixed(3));
+      ctx.beginPath(); ctx.arc(x, y, 2.6, 0, Math.PI * 2); ctx.fill();
+    }
+    if (!still.matches && visible && !document.hidden) raf = requestAnimationFrame(draw);
+  }
+  function kick(){ if (!raf) raf = requestAnimationFrame(draw); }
+  new ResizeObserver(size).observe(cv);
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) kick(); }).observe(cv);
+  document.addEventListener('visibilitychange', kick);
+  still.addEventListener?.('change', kick);
+  return {
+    setBlips(list){
+      const recent = list.filter(r => ts(TODAY) - ts(r.date) <= 120 * 864e5).slice(0, 30);
+      blips = recent.map(r => ({
+        a: hash(r.id) * Math.PI * 2,
+        r: .22 + hash(r.id + '#') * .7,
+        col: r.impacts.includes('closure') ? 'rgba(255,205,80,A)' : 'rgba(120,215,255,A)'
+      }));
+      kick();
+    }
+  };
+})();
+
 async function load(){
   const bust = '?v=' + Date.now();
   const get = n => fetch(`data/${n}.json${bust}`, {cache:'no-store'}).then(r => { if (!r.ok) throw new Error(`${n}.json returned ${r.status}`); return r.json(); });
@@ -494,6 +603,7 @@ async function load(){
     if (META.lastRunAt) TODAY = new Date(Math.max(Date.now(), Date.parse(META.lastRunAt))).toISOString().slice(0,10);
     state.sel = [...DATA].filter(r => inLoc(r)).sort((a,b) => ts(b.date) - ts(a.date))[0]?.id;
     renderHeader(); renderControls(); renderChanges(); render();
+    radar.setBlips(DATA);
   }catch(err){
     $('#count').textContent = '';
     $('#list').innerHTML = `<li class="empty"><p>The incident data could not be loaded (${esc(err.message)}). Reload the page to try again.</p></li>`;
