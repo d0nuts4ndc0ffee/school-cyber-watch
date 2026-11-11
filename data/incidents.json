@@ -1,0 +1,702 @@
+[
+  {
+    "id": "new-plymouth",
+    "name": "New Plymouth School District",
+    "sector": "K-12",
+    "place": "Idaho",
+    "country": "United States",
+    "date": "2026-11-10",
+    "dateApprox": false,
+    "type": "other",
+    "impacts": [
+      "closure",
+      "outage"
+    ],
+    "summary": "A threat found on the district network led it to stop using computers and cancel classes at all three schools. Families were told to delete suspicious emails that looked like they came from the district.",
+    "closure": "Classes canceled, due to resume 16 Nov",
+    "sources": [
+      {
+        "label": "DataBreaches.net",
+        "url": "https://databreaches.net/2026/11/11/cyber-threat-prompts-new-plymouth-school-district-in-idaho-to-cancel-classes/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "vanderbilt",
+    "name": "Vanderbilt University",
+    "sector": "Higher ed",
+    "place": "Nashville, Tennessee",
+    "country": "United States",
+    "date": "2026-11-09",
+    "dateApprox": false,
+    "type": "other",
+    "impacts": [
+      "outage"
+    ],
+    "summary": "An attack took down university networks, devices and cloud services. Staff were told to disconnect and shut down university devices. The university says its hospital was not affected.",
+    "sources": [
+      {
+        "label": "Nashville Banner",
+        "url": "https://nashvillebanner.com/2026/11/09/vanderbilt-university-cyberattack-byod"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "richmond",
+    "name": "Richmond Public Schools",
+    "sector": "K-12",
+    "place": "Richmond, Virginia",
+    "country": "United States",
+    "date": "2026-10-21",
+    "dateApprox": false,
+    "type": "ransom",
+    "impacts": [
+      "outage",
+      "data"
+    ],
+    "summary": "The district cut internet access across its schools after spotting suspicious activity and taught on paper for days. On 9 Nov it said data taken in the attack may have been posted on the dark web. The FBI and Virginia State Police are investigating, and free credit monitoring is on offer.",
+    "sources": [
+      {
+        "label": "WTVR CBS 6",
+        "url": "https://www.wtvr.com/news/local-news/richmond/rps-cybersecurity-attack-latest-nov-11-2026"
+      },
+      {
+        "label": "Cybernews",
+        "url": "https://cybernews.com/news/richmond-oneonta-schools-ransomware-attacks/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "oneonta",
+    "name": "Oneonta City School District",
+    "sector": "K-12",
+    "place": "Oneonta, New York",
+    "country": "United States",
+    "date": "2026-10-23",
+    "dateApprox": false,
+    "type": "ransom",
+    "impacts": [
+      "closure",
+      "outage",
+      "extortion"
+    ],
+    "summary": "Schools closed on a Friday and the following Monday after life-safety systems were taken offline for the investigation. A group calling itself Shiba ransomware emailed media outlets claiming it stole student, parent and staff records.",
+    "closure": "2 school days",
+    "actor": "\"Shiba ransomware\" (claimed)",
+    "sources": [
+      {
+        "label": "GovTech",
+        "url": "https://www.govtech.com/education/k-12/ransomware-group-claims-responsibility-for-oneonta-city-schools-hack"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "jerome",
+    "name": "Jerome School District",
+    "sector": "K-12",
+    "place": "Jerome, Idaho",
+    "country": "United States",
+    "date": "2026-10-19",
+    "dateApprox": false,
+    "type": "ransom",
+    "impacts": [
+      "closure",
+      "outage"
+    ],
+    "summary": "Ransomware spread across district servers, taking down communications and door locks. Classes were canceled for two days, then ran on paper and pencil while internet access was restored.",
+    "closure": "2 school days",
+    "sources": [
+      {
+        "label": "KMVT",
+        "url": "https://www.kmvt.com/2026/10/30/jerome-school-district-reopens-after-cyberattack-closed-schools-two-days/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "copenhagen",
+    "name": "University of Copenhagen",
+    "sector": "Higher ed",
+    "place": "Copenhagen",
+    "country": "Denmark",
+    "date": "2026-10-23",
+    "dateApprox": false,
+    "type": "breach",
+    "impacts": [
+      "data"
+    ],
+    "summary": "Attackers reached a test environment that held real personal data. The breach covers about 525,000 people and exposed access card PINs for about 20,000.",
+    "people": 525000,
+    "peopleNote": "people, per the university",
+    "sources": [
+      {
+        "label": "eSecurity Planet",
+        "url": "https://www.esecurityplanet.com/threats/news-university-copenhagen-data-breach-emea-denmark/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "easthampton",
+    "name": "Easthampton Public Schools",
+    "sector": "K-12",
+    "place": "Easthampton, Massachusetts",
+    "country": "United States",
+    "date": "2026-10-01",
+    "dateApprox": true,
+    "type": "access",
+    "impacts": [
+      "outage"
+    ],
+    "summary": "IT staff saw unknown files appearing on staff desktops and took servers down. A month-long forensic review found no evidence that data was stolen. The district plans to expand multifactor authentication.",
+    "sources": [
+      {
+        "label": "Daily Hampshire Gazette",
+        "url": "https://gazettenet.com/2026/11/10/no-data-stolen-in-easthampton-schools-cybersecurity-incident-superintendent-says/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "springfield",
+    "name": "Springfield Public Schools",
+    "sector": "K-12",
+    "place": "Springfield, Massachusetts",
+    "country": "United States",
+    "date": "2026-09-06",
+    "dateApprox": false,
+    "type": "ransom",
+    "impacts": [
+      "closure",
+      "outage",
+      "data"
+    ],
+    "summary": "An attack over Labor Day weekend left about 70 schools without email, phones or records and closed them for four days. The FBI later told the district that personal data was taken. A federal report attributed the attack to the Interlock group.",
+    "people": 26000,
+    "peopleNote": "students enrolled; number with data exposed not stated",
+    "closure": "4 school days",
+    "actor": "Interlock (per federal report)",
+    "sources": [
+      {
+        "label": "WBUR",
+        "url": "https://www.wbur.org/news/2026/09/16/springfield-massachusetts-schools-cyber-attack-student-staff-data"
+      },
+      {
+        "label": "Boston Globe",
+        "url": "https://www.bostonglobe.com/2026/09/09/metro/springfield-schools-cyber-incident/"
+      },
+      {
+        "label": "GovTech",
+        "url": "https://www.govtech.com/education/k-12/federal-report-pins-springfield-schools-cyber-attack-on-hacker-group"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "mathspace",
+    "name": "Mathspace",
+    "sector": "Shared platform",
+    "place": "Australia and New Zealand",
+    "country": "Australia",
+    "date": "2026-09-11",
+    "dateApprox": true,
+    "type": "vendor",
+    "impacts": [
+      "data"
+    ],
+    "summary": "A flaw in an internal reporting tool at the maths learning platform let attackers download personal information on students, parents, guardians and teachers across both countries.",
+    "people": 1079819,
+    "peopleNote": "students, parents and teachers",
+    "sources": [
+      {
+        "label": "IT Brief Australia",
+        "url": "https://itbrief.com.au/story/mathspace-breach-exposes-1-million-students-parents-and-teachers"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "st-james",
+    "name": "St James' Anglican School",
+    "sector": "K-12",
+    "place": "Perth, Western Australia",
+    "country": "Australia",
+    "date": "2026-09-01",
+    "dateApprox": true,
+    "type": "breach",
+    "impacts": [
+      "data"
+    ],
+    "summary": "The school confirmed that intruders got into its systems and extracted personal data on current and former students going back to 2015.",
+    "sources": [
+      {
+        "label": "Insurance Business",
+        "url": "https://www.insurancebusinessmag.com/au/news/cyber/education-clients-face-broader-cyber-exposure-after-perth-school-breach-590098.aspx"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "mount-royal",
+    "name": "Mount Royal University",
+    "sector": "Higher ed",
+    "place": "Calgary, Alberta",
+    "country": "Canada",
+    "date": "2026-06-17",
+    "dateApprox": false,
+    "type": "ransom",
+    "impacts": [
+      "outage",
+      "data",
+      "extortion"
+    ],
+    "summary": "Attackers stole files from a shared drive used by students and employees, then deleted the originals. Phones, internet access and parts of the website went down. The CMD Organization group claimed the attack.",
+    "actor": "CMD Organization (claimed)",
+    "ransom": "$1.9 million (30 BTC), per the group",
+    "sources": [
+      {
+        "label": "SecurityWeek",
+        "url": "https://www.securityweek.com/mount-royal-university-confirms-data-stolen-in-ransomware-attack/amp/"
+      },
+      {
+        "label": "Comparitech",
+        "url": "https://www.comparitech.com/news/cybercriminals-say-they-hacked-mount-royal-university-demand-ransom/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "great-marlow",
+    "name": "Great Marlow School",
+    "sector": "K-12",
+    "place": "Buckinghamshire, England",
+    "country": "United Kingdom",
+    "date": "2026-06-10",
+    "dateApprox": false,
+    "type": "other",
+    "impacts": [
+      "closure",
+      "outage"
+    ],
+    "summary": "A suspected malware incident led the school to take parts of its network offline and close to most pupils. Year 11 and Year 13 students still came in for external exams.",
+    "closure": "Closed to most pupils",
+    "sources": [
+      {
+        "label": "Computing",
+        "url": "https://www.computing.co.uk/news/2026/security/cyberattack-forces-buckinghamshire-school-to-close-for-most-pupils"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "nottingham",
+    "name": "University of Nottingham",
+    "sector": "Higher ed",
+    "place": "Nottingham, England",
+    "country": "United Kingdom",
+    "date": "2026-06-09",
+    "dateApprox": false,
+    "type": "breach",
+    "impacts": [
+      "data",
+      "extortion"
+    ],
+    "summary": "An outside party accessed the Campus Solutions student records system. Have I Been Pwned counted about 454,600 current and former students in the leaked data. The ShinyHunters group claimed the attack, and police opened a criminal investigation.",
+    "people": 454600,
+    "peopleNote": "current and former students, per Have I Been Pwned",
+    "actor": "ShinyHunters (claimed)",
+    "sources": [
+      {
+        "label": "University of Nottingham",
+        "url": "https://www.nottingham.ac.uk/home/alerts/cyber-attack-incident.aspx"
+      },
+      {
+        "label": "BleepingComputer",
+        "url": "https://bleepingcomputer.com/news/security/nottingham-university-data-breach-affects-over-450-000-students"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "reynella",
+    "name": "Reynella East College",
+    "sector": "K-12",
+    "place": "Adelaide, South Australia",
+    "country": "Australia",
+    "date": "2026-06-09",
+    "dateApprox": false,
+    "type": "ransom",
+    "impacts": [
+      "outage",
+      "data",
+      "extortion"
+    ],
+    "summary": "All ICT systems at the 1,900-student school went offline for about a week. Two weeks later the Interlock group published what it says is more than 600 GB of school data.",
+    "actor": "Interlock (claimed)",
+    "sources": [
+      {
+        "label": "Insurance Business",
+        "url": "https://www.insurancebusinessmag.com/au/news/cyber/south-australian-school-data-dumped-online-weeks-after-hack-580273.aspx"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "evanston",
+    "name": "Evanston Township High School",
+    "sector": "K-12",
+    "place": "Evanston, Illinois",
+    "country": "United States",
+    "date": "2026-06-07",
+    "dateApprox": false,
+    "type": "ransom",
+    "impacts": [
+      "closure",
+      "outage"
+    ],
+    "summary": "A ransomware attack disrupted district systems, internet and phones. The campus closed for two days, canceling summer classes and sports camps.",
+    "closure": "2 days",
+    "sources": [
+      {
+        "label": "WGN",
+        "url": "https://wgntv.com/news/north-suburbs/evanston-township-high-school-cancels-summer-classes-due-to-ransomware-attack/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "oxford",
+    "name": "University of Oxford (CareerConnect)",
+    "sector": "Higher ed",
+    "place": "Oxford, England",
+    "country": "United Kingdom",
+    "date": "2026-06-01",
+    "dateApprox": false,
+    "type": "vendor",
+    "impacts": [
+      "data"
+    ],
+    "summary": "A flaw in the careers platform run by supplier Group GTI exposed names and email addresses of students, alumni, researchers and recruiters. Oxford says passwords were not affected.",
+    "sources": [
+      {
+        "label": "CPO Magazine",
+        "url": "https://www.cpomagazine.com/data-breach/oxford-confirms-third-party-data-breach-impacting-careerconnect-platform-exposed-personal-information/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "delano",
+    "name": "Delano Public Schools",
+    "sector": "K-12",
+    "place": "Delano, Minnesota",
+    "country": "United States",
+    "date": "2026-05-21",
+    "dateApprox": false,
+    "type": "ransom",
+    "impacts": [
+      "closure",
+      "outage",
+      "extortion"
+    ],
+    "summary": "Ransomware shut down systems across the district and classes were canceled for a day. LockBit claimed the attack in June. The district said it paid nothing.",
+    "closure": "1 school day",
+    "actor": "LockBit (claimed)",
+    "ransom": "$1.2 million, not paid",
+    "sources": [
+      {
+        "label": "Comparitech",
+        "url": "https://www.comparitech.com/news/education-ransomware-roundup-h1-2026-stats-on-attacks-ransoms-and-data-breaches/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "canvas",
+    "name": "Instructure Canvas",
+    "sector": "Shared platform",
+    "place": "Worldwide",
+    "country": "Worldwide",
+    "date": "2026-04-29",
+    "dateApprox": false,
+    "type": "vendor",
+    "impacts": [
+      "outage",
+      "data",
+      "extortion"
+    ],
+    "summary": "The company behind the Canvas learning platform confirmed a breach of user information and messages. ShinyHunters claimed data on 275 million users at nearly 9,000 schools, a scale Instructure has not verified. Login pages were defaced with a ransom note during finals week, and Instructure said on 12 May that it had reached an agreement with the attackers.",
+    "people": 275000000,
+    "peopleNote": "users, claimed by the attackers and unverified",
+    "actor": "ShinyHunters (claimed)",
+    "sources": [
+      {
+        "label": "TechRepublic",
+        "url": "https://techrepublic.com/article/news-canvas-instructure-breach-275m-users"
+      },
+      {
+        "label": "Security Affairs",
+        "url": "https://securityaffairs.com/191686/cyber-crime/educational-tech-firm-instructure-data-breach-may-have-impacted-9000-schools.html"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "spring-lake-park",
+    "name": "Spring Lake Park Schools",
+    "sector": "K-12",
+    "place": "Spring Lake Park, Minnesota",
+    "country": "United States",
+    "date": "2026-04-12",
+    "dateApprox": false,
+    "type": "ransom",
+    "impacts": [
+      "closure",
+      "outage"
+    ],
+    "summary": "Staff shut down every system after finding an outside actor inside the network. Systems needed to run school safely were unavailable, so classes, child care and after-school programs were canceled.",
+    "closure": "1 school day or more",
+    "sources": [
+      {
+        "label": "GovTech",
+        "url": "https://www.govtech.com/education/k-12/spring-lake-park-minn-schools-close-due-to-ransomware"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "c2k",
+    "name": "C2k schools network",
+    "sector": "Shared platform",
+    "place": "Northern Ireland",
+    "country": "United Kingdom",
+    "date": "2026-04-03",
+    "dateApprox": false,
+    "type": "access",
+    "impacts": [
+      "outage",
+      "data"
+    ],
+    "summary": "The Education Authority reset every password on the network used by schools across Northern Ireland, locking pupils out ahead of exams. Investigators confirmed targeted access to personal data at a small number of schools. Police arrested a 16-year-old, and services were largely restored by 17 April.",
+    "sources": [
+      {
+        "label": "Education Authority",
+        "url": "https://www.eani.org.uk/news/update-on-cyber-attack"
+      },
+      {
+        "label": "BBC News",
+        "url": "https://www.bbc.co.uk/news/articles/cnv8mn91drlo"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "st-annes",
+    "name": "St Anne's Catholic School",
+    "sector": "K-12",
+    "place": "Southampton, England",
+    "country": "United Kingdom",
+    "date": "2026-03-22",
+    "dateApprox": false,
+    "type": "ransom",
+    "impacts": [
+      "closure",
+      "outage",
+      "extortion"
+    ],
+    "summary": "The school told parents of a ransomware attack on its network and stayed closed for four days. The Lynx group later claimed it took confidential, financial and contract data.",
+    "closure": "4 days",
+    "actor": "Lynx (claimed)",
+    "sources": [
+      {
+        "label": "Comparitech",
+        "url": "https://www.comparitech.com/news/ransomware-gang-claims-attack-and-data-theft-from-uk-city-school/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "alamo-heights",
+    "name": "Alamo Heights ISD",
+    "sector": "K-12",
+    "place": "San Antonio, Texas",
+    "country": "United States",
+    "date": "2026-03-15",
+    "dateApprox": true,
+    "type": "ransom",
+    "impacts": [
+      "outage",
+      "data"
+    ],
+    "summary": "District systems were down for five days. More than 26,600 Texas residents have since been notified that their data was involved. Qilin claimed the attack.",
+    "people": 26629,
+    "peopleNote": "people notified",
+    "actor": "Qilin (claimed)",
+    "sources": [
+      {
+        "label": "Comparitech",
+        "url": "https://www.comparitech.com/news/education-ransomware-roundup-h1-2026-stats-on-attacks-ransoms-and-data-breaches/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "ccbc",
+    "name": "Community College of Beaver County",
+    "sector": "Higher ed",
+    "place": "Pennsylvania",
+    "country": "United States",
+    "date": "2026-03-09",
+    "dateApprox": false,
+    "type": "ransom",
+    "impacts": [
+      "closure",
+      "outage",
+      "extortion"
+    ],
+    "summary": "An attack encrypted college data and cut access to grades, transcripts and financial records. The campus closed, and in-person classes resumed on 30 March. Interlock claimed 780 GB of stolen data.",
+    "closure": "In-person classes out until 30 Mar",
+    "actor": "Interlock (claimed)",
+    "sources": [
+      {
+        "label": "Comparitech",
+        "url": "https://www.comparitech.com/news/cybercriminals-say-they-hacked-community-college-of-beaver-county"
+      },
+      {
+        "label": "CCBC notice",
+        "url": "https://ccbc.edu/?p=4025"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "lccc",
+    "name": "Lehigh Carbon Community College",
+    "sector": "Higher ed",
+    "place": "Schnecksville, Pennsylvania",
+    "country": "United States",
+    "date": "2026-03-04",
+    "dateApprox": false,
+    "type": "ransom",
+    "impacts": [
+      "closure",
+      "outage",
+      "extortion"
+    ],
+    "summary": "The college shut all campus sites and moved classes online for more than a week during what it called an IT disruption. The Medusa group later claimed the attack.",
+    "closure": "Campuses closed more than a week",
+    "actor": "Medusa (claimed)",
+    "ransom": "$100,000",
+    "sources": [
+      {
+        "label": "Comparitech",
+        "url": "https://www.comparitech.com/news/education-ransomware-roundup-h1-2026-stats-on-attacks-ransoms-and-data-breaches/"
+      },
+      {
+        "label": "JD Supra",
+        "url": "https://www.jdsupra.com/legalnews/cyberattacks-on-higher-education-5707138/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "victoria",
+    "name": "Victorian Department of Education",
+    "sector": "Shared platform",
+    "place": "Victoria",
+    "country": "Australia",
+    "date": "2026-01-14",
+    "dateApprox": false,
+    "type": "breach",
+    "impacts": [
+      "data"
+    ],
+    "summary": "Attackers got into a central database through one school's network and accessed information on current and former government school students. All student passwords were reset before the school year began.",
+    "sources": [
+      {
+        "label": "iTnews",
+        "url": "https://www.itnews.com.au/news/vic-education-database-breached-via-schools-network-622987"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "higham-lane",
+    "name": "Higham Lane School",
+    "sector": "K-12",
+    "place": "Nuneaton, England",
+    "country": "United Kingdom",
+    "date": "2026-01-03",
+    "dateApprox": false,
+    "type": "other",
+    "impacts": [
+      "closure",
+      "outage"
+    ],
+    "summary": "An attack over the Christmas break took down phones, email, servers and the school management system. The 1,400-pupil school stayed shut when term was due to start, with a government incident response team helping.",
+    "closure": "Closed 5 and 6 Jan at least",
+    "sources": [
+      {
+        "label": "Hits Radio",
+        "url": "https://www.hellorayo.co.uk/hits-radio/coventry/news/higham-lane-school-cyber-attack-closure"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  }
+]

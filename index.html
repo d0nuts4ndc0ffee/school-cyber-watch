@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>School Cyber Watch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a chalkboard band on top, a term-calendar timeline as the signature, then register (list) + record card (detail). */
+:root{
+  --bg:#ECEFEA; --surface:#FAFBF8; --ink:#14211D; --muted:#56655F; --line:#D2D9D2;
+  --accent:#F2B705; --accent-ink:#14211D; --link:#1F5D4C;
+  --band-bg:#1B4438; --band-ink:#F3F6F0; --band-muted:#B4CCC2;
+  --t-ransom:#BF3528; --t-breach:#6444BF; --t-access:#1C6BB3; --t-vendor:#A85A06; --t-other:#56655F;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1916; --surface:#15231F; --ink:#E8EEE7; --muted:#9BAEA6; --line:#2A3C36;
+    --accent:#F2B705; --accent-ink:#14211D; --link:#8FD3BA;
+    --band-bg:#15231F; --band-ink:#F3F6F0; --band-muted:#9BAEA6;
+    --t-ransom:#FF8A7B; --t-breach:#B9A6FF; --t-access:#80BEF3; --t-vendor:#F0A95A; --t-other:#9BAEA6;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1916; --surface:#15231F; --ink:#E8EEE7; --muted:#9BAEA6; --line:#2A3C36;
+  --accent:#F2B705; --accent-ink:#14211D; --link:#8FD3BA;
+  --band-bg:#15231F; --band-ink:#F3F6F0; --band-muted:#9BAEA6;
+  --t-ransom:#FF8A7B; --t-breach:#B9A6FF; --t-access:#80BEF3; --t-vendor:#F0A95A; --t-other:#9BAEA6;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:400 15px/1.5 var(--body);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--link)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* Band */
+.band{background:var(--band-bg);color:var(--band-ink);border-bottom:4px solid var(--accent)}
+.band .wrap{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 32px;padding-top:26px;padding-bottom:22px}
+h1{font:800 clamp(40px,7vw,68px)/.9 var(--display);letter-spacing:.01em;text-transform:uppercase;margin:0}
+h1 span{color:var(--accent)}
+.lede{margin:10px 0 0;max-width:52ch;color:var(--band-muted)}
+.stamp{font:400 12px/1.6 var(--mono);color:var(--band-muted);text-align:right}
+.stamp b{color:var(--band-ink);font-weight:500}
+
+/* Summary */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:22px 0 0;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
+.stat{padding:14px 16px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:0}
+.stat b{display:block;font:800 34px/1 var(--display)}
+.stat span{color:var(--muted);font-size:13px}
+@media (max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(3){border-left:0}.stat:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* Timeline */
+.panel{border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.tl{margin-top:14px;padding:14px 16px 10px}
+.tl-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;align-items:baseline}
+h2{font:700 20px/1.1 var(--display);letter-spacing:.04em;text-transform:uppercase;margin:0}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--t);margin-right:5px}
+.tl-plot{position:relative;margin-top:8px;border-bottom:1px solid var(--line)}
+.tl-dot{position:absolute;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid var(--surface);background:var(--t);padding:0;cursor:pointer;transition:transform .12s}
+.tl-dot:hover{transform:scale(1.25)}
+.tl-dot.dim{opacity:.18}
+.tl-dot.sel{box-shadow:0 0 0 3px var(--accent);border-color:var(--ink)}
+.tl-grid{position:absolute;top:0;bottom:0;width:1px;background:var(--line);opacity:.6}
+.tl-now{position:absolute;top:0;bottom:0;width:0;border-left:1px dashed var(--muted)}
+.tl-axis{position:relative;height:20px;font:400 11px/20px var(--mono);color:var(--muted)}
+.tl-axis span{position:absolute;padding-left:3px;white-space:nowrap}
+
+/* Controls */
+.controls{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.row1{display:flex;flex-wrap:wrap;gap:10px}
+.search{flex:1 1 240px;min-width:0;height:40px;padding:0 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+select{height:40px;padding:0 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{height:32px;padding:0 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);cursor:pointer;font-size:13px;display:inline-flex;align-items:center;gap:6px}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--t)}
+.chip:hover{border-color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip.toggle[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.sep{width:1px;background:var(--line);margin:4px 4px}
+
+/* Register + record */
+.main{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;margin:14px 0 28px;align-items:start}
+@media (min-width:900px){.main{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}}
+.count{font-size:13px;color:var(--muted);margin:0 0 8px}
+ul.list{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
+ul.list li+li{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:4px minmax(0,1fr) auto;gap:0 12px;width:100%;text-align:left;background:none;border:0;padding:12px 14px 12px 0;cursor:pointer;align-items:center}
+.row:hover{background:color-mix(in srgb,var(--ink) 4%,transparent)}
+.row[aria-pressed="true"]{background:color-mix(in srgb,var(--accent) 16%,transparent)}
+.stripe{align-self:stretch;background:var(--t);border-radius:0 3px 3px 0}
+.row-name{display:block;font-weight:600;overflow-wrap:anywhere}
+.row-meta{display:block;font-size:13px;color:var(--muted)}
+.row-side{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.row-date{font:400 12px var(--mono);color:var(--muted);white-space:nowrap}
+.pill{display:inline-block;font-size:12px;font-weight:500;line-height:20px;padding:0 8px;border-radius:4px;color:var(--t);border:1px solid var(--t);white-space:nowrap}
+.new{font:500 10px/16px var(--mono);text-transform:uppercase;letter-spacing:.06em;background:var(--accent);color:var(--accent-ink);padding:0 5px;border-radius:3px;margin-left:6px;vertical-align:2px}
+.empty{padding:28px 16px;text-align:center;color:var(--muted)}
+.btn{height:36px;padding:0 14px;border-radius:8px;border:1px solid var(--ink);background:var(--ink);color:var(--bg);cursor:pointer;font-weight:500}
+.btn.ghost{background:none;color:var(--ink);border-color:var(--line)}
+.btn:disabled{opacity:.5;cursor:default}
+
+.record{padding:18px}
+@media (min-width:900px){aside{position:sticky;top:14px}}
+li .record{border-top:1px dashed var(--line);background:var(--bg)}
+.record h3{font:800 30px/1 var(--display);text-transform:uppercase;letter-spacing:.01em;margin:8px 0 4px;text-wrap:balance}
+.record .where{color:var(--muted);margin:0 0 12px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;line-height:20px;padding:0 8px;border-radius:4px;background:color-mix(in srgb,var(--ink) 8%,transparent)}
+.record p.sum{margin:0 0 14px;max-width:65ch}
+dl{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 14px;margin:0 0 14px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:14px}
+dt{color:var(--muted)}
+dd{margin:0}
+.src{margin:0 0 14px;padding:0;list-style:none;font-size:14px;display:flex;flex-direction:column;gap:4px}
+.src a{overflow-wrap:anywhere}
+.label{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 6px}
+
+/* Ask */
+.hint{font-size:13px;color:var(--muted);margin:6px 0 0}
+
+/* Daily-update additions */
+.unconf{font:500 10px/16px var(--mono);text-transform:uppercase;letter-spacing:.06em;border:1px dashed var(--muted);color:var(--muted);padding:0 5px;border-radius:3px;margin-left:6px;vertical-align:2px;white-space:nowrap}
+.new.upd{background:none;color:var(--ink);border:1px solid var(--accent)}
+.tl-dot.hollow{background:var(--surface);border:2px dashed var(--t)}
+.changes{padding:16px;margin-bottom:16px}
+.changes .hint{margin:6px 0 10px}
+.log{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.log li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px;font-size:14px;padding-top:10px;border-top:1px solid var(--line)}
+.log p{margin:0}
+.log-date{color:var(--muted);font-size:12px;padding-top:2px}
+.log-links{color:var(--muted);font-size:13px;margin-top:4px!important}
+.linkish{background:none;border:0;padding:0;color:var(--link);text-decoration:underline;cursor:pointer;font-size:13px}
+.warn{margin:8px 0;padding:8px 10px;border-left:3px solid var(--t-ransom);background:var(--bg);font-size:13px}
+footer{border-top:1px solid var(--line);padding:18px 0 36px;color:var(--muted);font-size:13px}
+footer p{max-width:80ch;margin:0 0 8px}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="band">
+  <div class="wrap">
+    <div>
+      <h1>School Cyber <span>Watch</span></h1>
+      <p class="lede">Schools, colleges and universities hit by ransomware, data breaches, unauthorized access and system shutdowns. Updated every morning. Every record links to its source.</p>
+    </div>
+    <div class="stamp" id="stamp">Loading the latest records…</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="stats" aria-label="Summary" id="stats"><div class="stat"><b>–</b><span>incidents on record</span></div><div class="stat"><b>–</b><span>closed a school or campus</span></div><div class="stat"><b>–</b><span>involved ransomware</span></div><div class="stat"><b>–</b><span>countries</span></div></section>
+
+  <section class="panel tl" aria-label="Timeline of incidents">
+    <div class="tl-head">
+      <h2>Term calendar</h2>
+      <div class="legend" id="legend"></div>
+    </div>
+    <div class="tl-plot" id="plot"></div>
+    <div class="tl-axis" id="axis" aria-hidden="true"></div>
+  </section>
+
+  <section class="controls" aria-label="Filters">
+    <div class="row1">
+      <input class="search" id="q" type="search" placeholder="Search a school, place, attacker or keyword" aria-label="Search incidents">
+      <select id="country" aria-label="Country"></select>
+      <select id="sort" aria-label="Sort order">
+        <option value="new">Newest first</option>
+        <option value="old">Oldest first</option>
+        <option value="added">Recently added or updated</option>
+        <option value="people">Most people affected</option>
+      </select>
+    </div>
+    <div class="chips" id="typeChips" role="group" aria-label="Attack type"></div>
+    <div class="chips" id="moreChips" role="group" aria-label="Sector and impact"></div>
+  </section>
+
+  <div class="main">
+    <section aria-label="Incidents">
+      <p class="count" id="count" aria-live="polite"></p>
+      <ul class="list" id="list"><li class="empty"><p>Loading incidents…</p></li></ul>
+    </section>
+    <aside id="aside">
+      <section class="panel changes" id="changes" aria-live="polite"></section>
+      <article class="panel record" id="record"></article>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p><b>How this is researched.</b> Each morning an automated research run checks news outlets, breach trackers and official school notices for new incidents and for updates to existing ones. Figures claimed by attackers are labelled as claims, and new finds are marked unconfirmed until a second source or an official notice backs them up. Incidents under investigation can change, so open the source before relying on a record.</p>
+    <p>Research is done with Claude. The full record history is public in this site's GitHub repository.</p>
+  </div>
+</footer>
+
+<script>
+const TYPES = {
+  ransom:{label:'Ransomware'},
+  breach:{label:'Data breach'},
+  access:{label:'Unauthorized access'},
+  vendor:{label:'Vendor breach'},
+  other:{label:'Unspecified attack'}
+};
+const IMPACTS = {closure:'School closed', outage:'Systems down', data:'Data exposed', extortion:'Extortion'};
+const FRESH_DAYS = 3;
+
+let DATA = [], META = {}, LOG = [];
+let TODAY = new Date().toISOString().slice(0,10);
+let LAUNCH = '';
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ts = d => Date.parse(d + 'T00:00:00Z');
+const fmtDay = new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short',timeZone:'UTC'});
+const fmtMonth = new Intl.DateTimeFormat('en-GB',{month:'short',year:'numeric',timeZone:'UTC'});
+const fmtFull = new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
+const fmtStamp = new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',timeZoneName:'short'});
+const dateShort = r => r.dateApprox ? fmtMonth.format(ts(r.date)) : fmtDay.format(ts(r.date));
+const dateLong = r => r.dateApprox ? fmtMonth.format(ts(r.date)) + ' (approximate)' : fmtFull.format(ts(r.date));
+const fresh = d => d && ts(TODAY) - ts(d) <= FRESH_DAYS*864e5;
+const isNew = r => r.addedAt !== LAUNCH && fresh(r.addedAt);
+const isUpdated = r => !isNew(r) && r.updatedAt && r.updatedAt !== r.addedAt && fresh(r.updatedAt);
+const big = n => n >= 1e6 ? (n/1e6).toFixed(n >= 1e7 ? 0 : 1).replace(/\.0$/,'') + 'M' : n >= 1e3 ? Math.round(n/1e3) + 'K' : String(n);
+
+const state = {q:'', type:'all', sector:'all', closure:false, unconf:false, country:'all', sort:'new', sel:null};
+const wide = window.matchMedia('(min-width: 900px)');
+
+function filtered(){
+  const q = state.q.trim().toLowerCase();
+  let out = DATA.filter(r =>
+    (state.type === 'all' || r.type === state.type) &&
+    (state.sector === 'all' || r.sector === state.sector) &&
+    (!state.closure || r.impacts.includes('closure')) &&
+    (!state.unconf || r.status === 'unconfirmed') &&
+    (state.country === 'all' || r.country === state.country) &&
+    (!q || [r.name,r.place,r.country,r.summary,r.actor,TYPES[r.type]?.label,r.sector].join(' ').toLowerCase().includes(q)));
+  if (state.sort === 'new') out.sort((a,b) => ts(b.date) - ts(a.date));
+  if (state.sort === 'old') out.sort((a,b) => ts(a.date) - ts(b.date));
+  if (state.sort === 'added') out.sort((a,b) => ts(b.updatedAt||b.addedAt) - ts(a.updatedAt||a.addedAt) || ts(b.date) - ts(a.date));
+  if (state.sort === 'people') out.sort((a,b) => (b.people||0) - (a.people||0) || ts(b.date) - ts(a.date));
+  return out;
+}
+
+function renderHeader(){
+  const closed = DATA.filter(r => r.impacts.includes('closure')).length;
+  const ransom = DATA.filter(r => r.type === 'ransom').length;
+  const countries = new Set(DATA.map(r => r.country).filter(c => c !== 'Worldwide')).size;
+  $('#stats').innerHTML = [
+    [DATA.length,'incidents on record'],
+    [closed,'closed a school or campus'],
+    [ransom,'involved ransomware'],
+    [countries,'countries']
+  ].map(([n,l]) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  const last = META.lastRunAt ? fmtStamp.format(new Date(META.lastRunAt)) : 'not yet';
+  const start = META.coverageStart ? fmtMonth.format(ts(META.coverageStart)) : 'Jan 2026';
+  $('#stamp').innerHTML = `Last updated <b>${esc(last)}</b><br>Coverage <b>${esc(start)} to now</b><br><b>${DATA.length}</b> sourced records`;
+}
+
+function renderChanges(){
+  const warn = META.lastRunStatus && META.lastRunStatus !== 'ok'
+    ? `<p class="warn">The latest daily check did not finish. Records shown are from the last successful update.</p>` : '';
+  const byId = Object.fromEntries(DATA.map(r => [r.id, r]));
+  const link = id => byId[id] ? `<button class="linkish" type="button" data-goto="${esc(id)}">${esc(byId[id].name)}</button>` : '';
+  const entries = LOG.slice(0, 7).map(e => {
+    const added = (e.added||[]).filter(id => byId[id]);
+    const updated = (e.updated||[]).filter(id => byId[id]);
+    const showLinks = added.length && added.length <= 6;
+    return `<li><span class="log-date mono">${esc(fmtDay.format(ts(e.date)))}</span>
+      <div><p>${esc(e.summary)}</p>
+      ${showLinks ? `<p class="log-links">Added: ${added.map(link).join(', ')}</p>` : ''}
+      ${updated.length ? `<p class="log-links">Updated: ${updated.map(link).join(', ')}</p>` : ''}</div></li>`;
+  }).join('');
+  $('#changes').innerHTML = `<h2>What changed</h2>${warn}<p class="hint">Checked every morning for new incidents. New finds stay marked <span class="unconf">Unconfirmed</span> until a second source or an official notice backs them up.</p>${entries ? `<ul class="log">${entries}</ul>` : '<p class="hint">No updates yet.</p>'}`;
+}
+
+function renderControls(){
+  $('#legend').innerHTML = Object.entries(TYPES).map(([k,v]) => `<span><i style="--t:var(--t-${k})"></i>${v.label}</span>`).join('');
+  $('#typeChips').innerHTML = `<button class="chip" data-type="all">All types</button>` +
+    Object.entries(TYPES).map(([k,v]) => `<button class="chip" data-type="${k}"><i style="--t:var(--t-${k})"></i>${v.label}</button>`).join('');
+  $('#moreChips').innerHTML = ['all','K-12','Higher ed','Shared platform'].map(s =>
+    `<button class="chip" data-sector="${s}">${s === 'all' ? 'All sectors' : s}</button>`).join('') +
+    `<span class="sep" aria-hidden="true"></span><button class="chip toggle" id="closureChip">Closed a school</button>` +
+    `<button class="chip toggle" id="unconfChip">Unconfirmed</button>`;
+  const countries = [...new Set(DATA.map(r => r.country))].sort();
+  $('#country').innerHTML = `<option value="all">All countries</option>` + countries.map(c => `<option>${esc(c)}</option>`).join('');
+}
+
+function syncChips(){
+  document.querySelectorAll('[data-type]').forEach(b => b.setAttribute('aria-pressed', b.dataset.type === state.type));
+  document.querySelectorAll('[data-sector]').forEach(b => b.setAttribute('aria-pressed', b.dataset.sector === state.sector));
+  $('#closureChip')?.setAttribute('aria-pressed', state.closure);
+  $('#unconfChip')?.setAttribute('aria-pressed', state.unconf);
+}
+
+function months(){
+  const start = ts(META.coverageStart || '2026-01-01');
+  const now = new Date(ts(TODAY));
+  const s = new Date(start), out = [];
+  for (let y = s.getUTCFullYear(), m = s.getUTCMonth(); Date.UTC(y,m,1) <= now; m++){ if (m > 11){ m = 0; y++; } out.push(Date.UTC(y,m,1)); }
+  return out;
+}
+
+function renderTimeline(match){
+  const plot = $('#plot'), axis = $('#axis');
+  const W = plot.clientWidth || 600;
+  const nb = Math.max(12, Math.floor(W / 17));
+  const ms = months();
+  const t0 = ms[0];
+  const last = new Date(ms[ms.length-1]);
+  const t1 = Date.UTC(last.getUTCFullYear(), last.getUTCMonth()+1, 1);
+  const frac = t => (t - t0) / (t1 - t0);
+  const stacks = {};
+  let maxStack = 1, html = '';
+  ms.forEach(t => { html += `<span class="tl-grid" style="left:${frac(t)*100}%"></span>`; });
+  html += `<span class="tl-now" style="left:${Math.min(100, frac(ts(TODAY))*100)}%" title="Today"></span>`;
+  [...DATA].filter(r => ts(r.date) >= t0).sort((a,b) => ts(a.date) - ts(b.date)).forEach(r => {
+    const b = Math.min(nb - 1, Math.floor(frac(ts(r.date)) * nb));
+    const i = stacks[b] = (stacks[b] || 0) + 1;
+    maxStack = Math.max(maxStack, i);
+    const cls = (match.has(r.id) ? '' : ' dim') + (r.id === state.sel ? ' sel' : '') + (r.status === 'unconfirmed' ? ' hollow' : '');
+    html += `<button class="tl-dot${cls}" data-id="${esc(r.id)}" style="--t:var(--t-${r.type});left:${(b+.5)/nb*100}%;bottom:${6 + (i-1)*16}px" title="${esc(r.name)}, ${dateShort(r)}" aria-label="${esc(r.name)}, ${TYPES[r.type].label}, ${dateShort(r)}"></button>`;
+  });
+  plot.style.height = (16 + maxStack*16) + 'px';
+  plot.innerHTML = html;
+  const every = Math.max(1, Math.ceil(ms.length * 34 / W));
+  const short = W / ms.length < 30;
+  axis.innerHTML = ms.map((t,i) => {
+    if (i % every) return '';
+    const d = new Date(t);
+    let lab = short ? fmtMonth.format(t).slice(0,1) : fmtMonth.format(t).slice(0,3);
+    if (d.getUTCMonth() === 0 && i > 0) lab = String(d.getUTCFullYear());
+    return `<span style="left:${frac(t)*100}%">${lab}</span>`;
+  }).join('');
+}
+
+function recordHTML(r){
+  const facts = [];
+  facts.push(['First reported', dateLong(r)]);
+  if (r.people) facts.push(['People affected', `${r.people.toLocaleString('en-GB')} ${esc(r.peopleNote)}`]);
+  if (r.closure) facts.push(['Closure', esc(r.closure)]);
+  if (r.actor) facts.push(['Attributed to', esc(r.actor)]);
+  if (r.ransom) facts.push(['Ransom demand', esc(r.ransom)]);
+  facts.push(['Status', r.status === 'unconfirmed' ? '<span class="unconf">Unconfirmed</span> awaiting a second source' : 'Confirmed by the sources below']);
+  facts.push(['On record since', fmtFull.format(ts(r.addedAt)) + (r.updatedAt && r.updatedAt !== r.addedAt ? `, updated ${fmtFull.format(ts(r.updatedAt))}` : '')]);
+  return `
+    <span class="pill" style="--t:var(--t-${r.type})">${TYPES[r.type].label}</span>
+    <h3>${esc(r.name)}</h3>
+    <p class="where">${esc(r.place)}${r.country !== r.place ? ' · ' + esc(r.country) : ''} · ${esc(r.sector)}</p>
+    <div class="tags">${r.impacts.map(i => `<span class="tag">${IMPACTS[i] || esc(i)}</span>`).join('')}</div>
+    <p class="sum">${esc(r.summary)}</p>
+    <dl>${facts.map(([k,v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>
+    <p class="label">Sources</p>
+    <ul class="src">${(r.sources||[]).map(s => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a></li>`).join('')}</ul>
+    <button class="btn ghost" type="button" id="copyBtn">Copy summary</button>`;
+}
+
+function badges(r){
+  return (r.status === 'unconfirmed' ? '<span class="unconf">Unconfirmed</span>' : '') +
+    (isNew(r) ? '<span class="new">New</span>' : isUpdated(r) ? '<span class="new upd">Updated</span>' : '');
+}
+
+function render(){
+  syncChips();
+  const rows = filtered();
+  const match = new Set(rows.map(r => r.id));
+  if (!match.has(state.sel) && rows.length) state.sel = rows[0].id;
+  $('#count').textContent = rows.length === DATA.length ? `Showing all ${DATA.length} incidents` : `Showing ${rows.length} of ${DATA.length} incidents`;
+  const list = $('#list');
+  const record = $('#record');
+  if (wide.matches) $('#aside').appendChild(record);
+  list.innerHTML = rows.length ? rows.map(r => `
+    <li><button class="row" data-id="${esc(r.id)}" aria-pressed="${r.id === state.sel}" style="--t:var(--t-${r.type})">
+      <span class="stripe"></span>
+      <span><span class="row-name">${esc(r.name)}${badges(r)}</span>
+      <span class="row-meta">${esc(r.place)} · ${esc(r.sector)}${r.impacts.includes('closure') ? ' · Closed' : ''}${r.people ? ' · ' + big(r.people) + ' people' : ''}</span></span>
+      <span class="row-side"><span class="pill">${TYPES[r.type].label}</span><span class="row-date">${dateShort(r)}</span></span>
+    </button></li>`).join('')
+    : `<li class="empty"><p>No incidents match these filters.</p><button class="btn ghost" type="button" id="clearBtn">Clear filters</button></li>`;
+  record.hidden = !rows.length;
+  if (rows.length){
+    record.innerHTML = recordHTML(DATA.find(r => r.id === state.sel));
+    if (!wide.matches){
+      const li = list.querySelector(`.row[data-id="${CSS.escape(state.sel)}"]`)?.parentElement;
+      if (li) li.appendChild(record);
+    }
+  }
+  renderTimeline(match);
+}
+
+function clearFilters(){
+  Object.assign(state,{q:'',type:'all',sector:'all',closure:false,unconf:false,country:'all'});
+  $('#q').value=''; $('#country').value='all';
+}
+
+function select(id, scroll){
+  state.sel = id;
+  if (!filtered().some(r => r.id === id)) clearFilters();
+  render();
+  if (scroll) document.querySelector(`.row[data-id="${CSS.escape(id)}"]`)?.scrollIntoView({block:'nearest'});
+}
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('button');
+  if (!t || !DATA.length) return;
+  if (t.dataset.type){ state.type = t.dataset.type; render(); }
+  else if (t.dataset.sector){ state.sector = t.dataset.sector; render(); }
+  else if (t.id === 'closureChip'){ state.closure = !state.closure; render(); }
+  else if (t.id === 'unconfChip'){ state.unconf = !state.unconf; render(); }
+  else if (t.classList.contains('row')) select(t.dataset.id);
+  else if (t.classList.contains('tl-dot')) select(t.dataset.id, true);
+  else if (t.dataset.goto) select(t.dataset.goto, true);
+  else if (t.id === 'clearBtn'){ clearFilters(); render(); }
+  else if (t.id === 'copyBtn'){
+    const r = DATA.find(x => x.id === state.sel);
+    const text = `${r.name} (${r.place}) - ${TYPES[r.type].label}, ${dateLong(r)}. ${r.summary} Source: ${r.sources?.[0]?.url || ''}`;
+    navigator.clipboard.writeText(text).then(() => { t.textContent = 'Copied'; }, () => { t.textContent = 'Copy not allowed here'; });
+  }
+});
+$('#q').addEventListener('input', e => { state.q = e.target.value; render(); });
+$('#country').addEventListener('change', e => { state.country = e.target.value; render(); });
+$('#sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
+wide.addEventListener('change', () => DATA.length && render());
+let rz; new ResizeObserver(() => { clearTimeout(rz); rz = setTimeout(() => DATA.length && renderTimeline(new Set(filtered().map(r => r.id))), 80); }).observe($('#plot'));
+
+async function load(){
+  const bust = '?v=' + Date.now();
+  const get = n => fetch(`data/${n}.json${bust}`, {cache:'no-store'}).then(r => { if (!r.ok) throw new Error(`${n}.json returned ${r.status}`); return r.json(); });
+  try{
+    const [inc, meta, log] = await Promise.all([get('incidents'), get('meta'), get('changelog').catch(() => [])]);
+    DATA = inc.filter(r => r && r.id && r.name && r.date && TYPES[r.type]);
+    META = meta || {};
+    LOG = [...log].sort((a,b) => ts(b.date) - ts(a.date));
+    LAUNCH = LOG.length ? LOG[LOG.length-1].date : '';
+    if (META.lastRunAt) TODAY = new Date(Math.max(Date.now(), Date.parse(META.lastRunAt))).toISOString().slice(0,10);
+    state.sel = [...DATA].sort((a,b) => ts(b.date) - ts(a.date))[0]?.id;
+    renderHeader(); renderControls(); renderChanges(); render();
+  }catch(err){
+    $('#count').textContent = '';
+    $('#list').innerHTML = `<li class="empty"><p>The incident data could not be loaded (${esc(err.message)}). Reload the page to try again.</p></li>`;
+    $('#stamp').textContent = 'Data unavailable';
+  }
+}
+load();
+</script>
+</body>
+</html>
