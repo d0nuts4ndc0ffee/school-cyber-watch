@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-11-12",
+    "summary": "Added the Frontline Education vendor breach, which exposed school employee records (reported at about 1.3 million people). Richmond Public Schools gained a source reporting its stolen data was posted to the dark web.",
+    "added": [
+      "frontline-education"
+    ],
+    "updated": [
+      "richmond"
+    ]
+  },
+  {
     "date": "2026-11-11",
     "summary": "Added Spokane Public Schools (Washington), where the district says student and staff data was compromised in a September attack. Vanderbilt now shows a ransomware group's leak-site claim (unverified).",
     "added": [

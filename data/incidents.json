@@ -1,5 +1,39 @@
 [
   {
+    "id": "frontline-education",
+    "name": "Frontline Education",
+    "sector": "Shared platform",
+    "place": "Nationwide (K-12 HR and school-health software vendor)",
+    "country": "United States",
+    "state": "Nationwide",
+    "date": "2026-08-01",
+    "dateApprox": true,
+    "type": "vendor",
+    "impacts": [
+      "data"
+    ],
+    "summary": "Frontline, a software supplier to school districts, says it found a flaw in a third-party software product in August and that employee records held for customers were exposed. Districts including Methuen, Massachusetts, are notifying staff that addresses, emails and Social Security numbers may be affected. Frontline says it fixed the flaw, hired a cybersecurity firm and contacted law enforcement; no attacker has been named.",
+    "people": 1300000,
+    "peopleNote": "people reported affected in breach-notice coverage; mostly school employees",
+    "sources": [
+      {
+        "label": "GovTech / Eagle-Tribune (Methuen employees)",
+        "url": "https://www.govtech.com/education/k-12/frontline-education-data-breach-impacts-school-employees"
+      },
+      {
+        "label": "SecurityWeek (1.3 million affected)",
+        "url": "https://www.securityweek.com/frontline-education-data-breach-impacts-over-1-3-million/"
+      },
+      {
+        "label": "BleepingComputer",
+        "url": "https://www.bleepingcomputer.com/news/security/frontline-education-data-breach-impacts-school-district-employees/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-12",
+    "updatedAt": "2026-11-12"
+  },
+  {
     "id": "spokane",
     "name": "Spokane Public Schools",
     "sector": "K-12",
@@ -116,11 +150,15 @@
       {
         "label": "Cybernews",
         "url": "https://cybernews.com/news/richmond-oneonta-schools-ransomware-attacks/"
+      },
+      {
+        "label": "GovTech (stolen data posted to dark web)",
+        "url": "https://www.govtech.com/education/k-12/hackers-posted-data-stolen-from-richmond-schools-to-dark-web"
       }
     ],
     "status": "confirmed",
     "addedAt": "2026-11-11",
-    "updatedAt": "2026-11-11"
+    "updatedAt": "2026-11-12"
   },
   {
     "id": "oneonta",
