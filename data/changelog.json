@@ -1,6 +1,45 @@
 [
   {
     "date": "2026-11-12",
+    "summary": "Full-year review of 2026: added 32 US incidents going back to January (26 confirmed, 6 unconfirmed attacker claims). The tracker now covers the United States only; 12 international records moved to an archive file.",
+    "added": [
+      "oakland-cusd-5",
+      "denmark-school-district",
+      "medinah-school-district-11",
+      "lakeside-union-school-district",
+      "tulare-city-school-district",
+      "alcorn-school-district",
+      "ohio-county-schools",
+      "monmouth-university",
+      "wagon-mound-public-schools",
+      "hanover-county-public-schools",
+      "san-felipe-del-rio-cisd",
+      "belgrade-school-district",
+      "kentwood-public-schools",
+      "san-diego-community-college-district",
+      "onslow-county-schools",
+      "cedar-crest-college",
+      "sumner-county-schools",
+      "salida-union-school-district",
+      "oceanside-unified-school-district",
+      "upland-unified-school-district",
+      "dc-public-schools",
+      "newton-county-schools",
+      "southeastern-oklahoma-state-university",
+      "brazosport-college",
+      "tulare-joint-union-high-school-district",
+      "ut-san-antonio",
+      "battle-creek-public-schools",
+      "westfield-public-schools",
+      "north-slope-borough-school-district",
+      "slate-valley-unified-school-district",
+      "sutton-public-schools",
+      "llano-isd"
+    ],
+    "updated": []
+  },
+  {
+    "date": "2026-11-12",
     "summary": "Added the Frontline Education vendor breach, which exposed school employee records (reported at about 1.3 million people). Richmond Public Schools gained a source reporting its stolen data was posted to the dark web.",
     "added": [
       "frontline-education"

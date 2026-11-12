@@ -1,0 +1,314 @@
+[
+  {
+    "id": "copenhagen",
+    "name": "University of Copenhagen",
+    "sector": "Higher ed",
+    "place": "Copenhagen",
+    "country": "Denmark",
+    "date": "2026-10-23",
+    "dateApprox": false,
+    "type": "breach",
+    "impacts": [
+      "data"
+    ],
+    "summary": "Attackers reached a test environment that held real personal data. The breach covers about 525,000 people and exposed access card PINs for about 20,000.",
+    "people": 525000,
+    "peopleNote": "people, per the university",
+    "sources": [
+      {
+        "label": "eSecurity Planet",
+        "url": "https://www.esecurityplanet.com/threats/news-university-copenhagen-data-breach-emea-denmark/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "mathspace",
+    "name": "Mathspace",
+    "sector": "Shared platform",
+    "place": "Australia and New Zealand",
+    "country": "Australia",
+    "date": "2026-09-11",
+    "dateApprox": true,
+    "type": "vendor",
+    "impacts": [
+      "data"
+    ],
+    "summary": "A flaw in an internal reporting tool at the maths learning platform let attackers download personal information on students, parents, guardians and teachers across both countries.",
+    "people": 1079819,
+    "peopleNote": "students, parents and teachers",
+    "sources": [
+      {
+        "label": "IT Brief Australia",
+        "url": "https://itbrief.com.au/story/mathspace-breach-exposes-1-million-students-parents-and-teachers"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "st-james",
+    "name": "St James' Anglican School",
+    "sector": "K-12",
+    "place": "Perth, Western Australia",
+    "country": "Australia",
+    "date": "2026-09-01",
+    "dateApprox": true,
+    "type": "breach",
+    "impacts": [
+      "data"
+    ],
+    "summary": "The school confirmed that intruders got into its systems and extracted personal data on current and former students going back to 2015.",
+    "sources": [
+      {
+        "label": "Insurance Business",
+        "url": "https://www.insurancebusinessmag.com/au/news/cyber/education-clients-face-broader-cyber-exposure-after-perth-school-breach-590098.aspx"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "mount-royal",
+    "name": "Mount Royal University",
+    "sector": "Higher ed",
+    "place": "Calgary, Alberta",
+    "country": "Canada",
+    "date": "2026-06-17",
+    "dateApprox": false,
+    "type": "ransom",
+    "impacts": [
+      "outage",
+      "data",
+      "extortion"
+    ],
+    "summary": "Attackers stole files from a shared drive used by students and employees, then deleted the originals. Phones, internet access and parts of the website went down. The CMD Organization group claimed the attack.",
+    "actor": "CMD Organization (claimed)",
+    "ransom": "$1.9 million (30 BTC), per the group",
+    "sources": [
+      {
+        "label": "SecurityWeek",
+        "url": "https://www.securityweek.com/mount-royal-university-confirms-data-stolen-in-ransomware-attack/amp/"
+      },
+      {
+        "label": "Comparitech",
+        "url": "https://www.comparitech.com/news/cybercriminals-say-they-hacked-mount-royal-university-demand-ransom/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "great-marlow",
+    "name": "Great Marlow School",
+    "sector": "K-12",
+    "place": "Buckinghamshire, England",
+    "country": "United Kingdom",
+    "date": "2026-06-10",
+    "dateApprox": false,
+    "type": "other",
+    "impacts": [
+      "closure",
+      "outage"
+    ],
+    "summary": "A suspected malware incident led the school to take parts of its network offline and close to most pupils. Year 11 and Year 13 students still came in for external exams.",
+    "closure": "Closed to most pupils",
+    "sources": [
+      {
+        "label": "Computing",
+        "url": "https://www.computing.co.uk/news/2026/security/cyberattack-forces-buckinghamshire-school-to-close-for-most-pupils"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "nottingham",
+    "name": "University of Nottingham",
+    "sector": "Higher ed",
+    "place": "Nottingham, England",
+    "country": "United Kingdom",
+    "date": "2026-06-09",
+    "dateApprox": false,
+    "type": "breach",
+    "impacts": [
+      "data",
+      "extortion"
+    ],
+    "summary": "An outside party accessed the Campus Solutions student records system. Have I Been Pwned counted about 454,600 current and former students in the leaked data. The ShinyHunters group claimed the attack, and police opened a criminal investigation.",
+    "people": 454600,
+    "peopleNote": "current and former students, per Have I Been Pwned",
+    "actor": "ShinyHunters (claimed)",
+    "sources": [
+      {
+        "label": "University of Nottingham",
+        "url": "https://www.nottingham.ac.uk/home/alerts/cyber-attack-incident.aspx"
+      },
+      {
+        "label": "BleepingComputer",
+        "url": "https://bleepingcomputer.com/news/security/nottingham-university-data-breach-affects-over-450-000-students"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "reynella",
+    "name": "Reynella East College",
+    "sector": "K-12",
+    "place": "Adelaide, South Australia",
+    "country": "Australia",
+    "date": "2026-06-09",
+    "dateApprox": false,
+    "type": "ransom",
+    "impacts": [
+      "outage",
+      "data",
+      "extortion"
+    ],
+    "summary": "All ICT systems at the 1,900-student school went offline for about a week. Two weeks later the Interlock group published what it says is more than 600 GB of school data.",
+    "actor": "Interlock (claimed)",
+    "sources": [
+      {
+        "label": "Insurance Business",
+        "url": "https://www.insurancebusinessmag.com/au/news/cyber/south-australian-school-data-dumped-online-weeks-after-hack-580273.aspx"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "oxford",
+    "name": "University of Oxford (CareerConnect)",
+    "sector": "Higher ed",
+    "place": "Oxford, England",
+    "country": "United Kingdom",
+    "date": "2026-06-01",
+    "dateApprox": false,
+    "type": "vendor",
+    "impacts": [
+      "data"
+    ],
+    "summary": "A flaw in the careers platform run by supplier Group GTI exposed names and email addresses of students, alumni, researchers and recruiters. Oxford says passwords were not affected.",
+    "sources": [
+      {
+        "label": "CPO Magazine",
+        "url": "https://www.cpomagazine.com/data-breach/oxford-confirms-third-party-data-breach-impacting-careerconnect-platform-exposed-personal-information/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "c2k",
+    "name": "C2k schools network",
+    "sector": "Shared platform",
+    "place": "Northern Ireland",
+    "country": "United Kingdom",
+    "date": "2026-04-03",
+    "dateApprox": false,
+    "type": "access",
+    "impacts": [
+      "outage",
+      "data"
+    ],
+    "summary": "The Education Authority reset every password on the network used by schools across Northern Ireland, locking pupils out ahead of exams. Investigators confirmed targeted access to personal data at a small number of schools. Police arrested a 16-year-old, and services were largely restored by 17 April.",
+    "sources": [
+      {
+        "label": "Education Authority",
+        "url": "https://www.eani.org.uk/news/update-on-cyber-attack"
+      },
+      {
+        "label": "BBC News",
+        "url": "https://www.bbc.co.uk/news/articles/cnv8mn91drlo"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "st-annes",
+    "name": "St Anne's Catholic School",
+    "sector": "K-12",
+    "place": "Southampton, England",
+    "country": "United Kingdom",
+    "date": "2026-03-22",
+    "dateApprox": false,
+    "type": "ransom",
+    "impacts": [
+      "closure",
+      "outage",
+      "extortion"
+    ],
+    "summary": "The school told parents of a ransomware attack on its network and stayed closed for four days. The Lynx group later claimed it took confidential, financial and contract data.",
+    "closure": "4 days",
+    "actor": "Lynx (claimed)",
+    "sources": [
+      {
+        "label": "Comparitech",
+        "url": "https://www.comparitech.com/news/ransomware-gang-claims-attack-and-data-theft-from-uk-city-school/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "victoria",
+    "name": "Victorian Department of Education",
+    "sector": "Shared platform",
+    "place": "Victoria",
+    "country": "Australia",
+    "date": "2026-01-14",
+    "dateApprox": false,
+    "type": "breach",
+    "impacts": [
+      "data"
+    ],
+    "summary": "Attackers got into a central database through one school's network and accessed information on current and former government school students. All student passwords were reset before the school year began.",
+    "sources": [
+      {
+        "label": "iTnews",
+        "url": "https://www.itnews.com.au/news/vic-education-database-breached-via-schools-network-622987"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
+    "id": "higham-lane",
+    "name": "Higham Lane School",
+    "sector": "K-12",
+    "place": "Nuneaton, England",
+    "country": "United Kingdom",
+    "date": "2026-01-03",
+    "dateApprox": false,
+    "type": "other",
+    "impacts": [
+      "closure",
+      "outage"
+    ],
+    "summary": "An attack over the Christmas break took down phones, email, servers and the school management system. The 1,400-pupil school stayed shut when term was due to start, with a government incident response team helping.",
+    "closure": "Closed 5 and 6 Jan at least",
+    "sources": [
+      {
+        "label": "Hits Radio",
+        "url": "https://www.hellorayo.co.uk/hits-radio/coventry/news/higham-lane-school-cyber-attack-closure"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  }
+]

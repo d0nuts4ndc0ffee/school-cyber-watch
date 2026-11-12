@@ -307,7 +307,7 @@ function renderStats(){
   const us = state.loc !== 'all' && state.loc !== 'intl';
   const closed = base.filter(r => r.impacts.includes('closure')).length;
   const ransom = base.filter(r => r.type === 'ransom').length;
-  const places = us ? new Set(base.map(r => r.state).filter(Boolean)).size
+  const places = us ? new Set(base.map(r => r.state).filter(st => st && st !== 'Nationwide')).size
                     : new Set(base.map(r => r.country).filter(c => c !== 'Worldwide')).size;
   const where = state.loc.startsWith('st:') ? ' in ' + state.loc.slice(3) : us ? ' in the US' : state.loc === 'intl' ? ' outside the US' : '';
   $('#stats').innerHTML = [
@@ -352,9 +352,9 @@ function renderControls(){
   const n = f => DATA.filter(f).length;
   const states = [...new Set(DATA.filter(r => r.country === 'United States' && r.state).map(r => r.state))].sort();
   $('#loc').innerHTML =
-    `<option value="us">United States (${n(isUS)})</option>` +
+    `<option value="us">All states (${n(isUS)})</option>` +
     (states.length ? `<optgroup label="By state">${states.map(st => `<option value="st:${esc(st)}">${esc(st)} (${n(r => r.country === 'United States' && r.state === st)})</option>`).join('')}</optgroup>` : '') +
-    `<optgroup label="Beyond the US"><option value="intl">Outside the US (${n(r => !isUS(r))})</option><option value="all">Everywhere (${DATA.length})</option></optgroup>`;
+    (n(r => !isUS(r)) ? `<optgroup label="Beyond the US"><option value="intl">Outside the US (${n(r => !isUS(r))})</option><option value="all">Everywhere (${DATA.length})</option></optgroup>` : '');
   $('#loc').value = state.loc;
 }
 

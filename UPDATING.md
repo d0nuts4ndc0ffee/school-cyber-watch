@@ -49,7 +49,7 @@ Allowed values:
 
 ## Rules for each run
 
-1. **Scope.** The tracker focuses on the **United States**: US schools, school districts, colleges, universities, and platforms or agencies serving them. Cover the US thoroughly. Outside the US, record only significant incidents (a school or campus closed, data on 10,000 or more people, or a national system disrupted). The incident must be a cyberattack: ransomware, a data breach, unauthorized access, or an attack that shut down systems. Skip outages with no sign of an attack, phishing warnings with no incident, and lawsuits about old breaches unless they reveal new facts.
+1. **Scope.** The tracker covers the **United States only**: US schools, school districts, colleges, universities, and platforms or agencies serving them. Do not add incidents in other countries. A breach at a platform used by schools in many countries is recorded only if US schools were affected (`country: Worldwide`). Older international records are kept in `data/archive-international.json` and are not updated.
 2. **Match before adding.** Compare each find with existing records by school name and place. If it matches, update that record and set `updatedAt`. Never create a second record for the same incident. A new `id` is the school name in lowercase with hyphens.
 3. **Confirmation.** A new record starts as `unconfirmed` unless an official notice from the school or authority, or two independent outlets, report it. Promote a record to `confirmed` when that bar is met, and add the new source.
 4. **Claims.** Numbers or attributions that come only from attackers are labelled "(claimed)" or "claimed by the attackers".
