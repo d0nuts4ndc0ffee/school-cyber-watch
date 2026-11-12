@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-11-11",
+    "summary": "Added Spokane Public Schools (Washington), where the district says student and staff data was compromised in a September attack. Vanderbilt now shows a ransomware group's leak-site claim (unverified).",
+    "added": [
+      "spokane"
+    ],
+    "updated": [
+      "vanderbilt"
+    ]
+  },
+  {
+    "date": "2026-11-11",
     "summary": "Tracker launched with 26 incidents researched from news reports, breach trackers and school notices.",
     "added": [
       "new-plymouth",

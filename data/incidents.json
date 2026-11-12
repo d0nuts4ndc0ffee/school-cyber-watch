@@ -1,5 +1,43 @@
 [
   {
+    "id": "spokane",
+    "name": "Spokane Public Schools",
+    "sector": "K-12",
+    "place": "Spokane, Washington",
+    "country": "United States",
+    "state": "Washington",
+    "date": "2026-09-20",
+    "dateApprox": false,
+    "type": "other",
+    "impacts": [
+      "outage",
+      "data"
+    ],
+    "summary": "The district learned of a network security incident on 20 September and took payroll, grading and attendance systems offline as a precaution, with teachers recording grades by hand meanwhile. Systems were restored over the following weeks. On 9 October the district said it believes student and staff data was compromised; the number of people and the type of data are not yet known. A leak-site listing by a group called NightSpire on 12 October is an unverified claim.",
+    "actor": "NightSpire (claimed)",
+    "sources": [
+      {
+        "label": "GovTech / Spokesman-Review (data may be compromised)",
+        "url": "https://www.govtech.com/education/k-12/spokane-schools-cyber-attack-may-have-compromised-data"
+      },
+      {
+        "label": "GovTech / Spokesman-Review (back online)",
+        "url": "https://www.govtech.com/education/k-12/spokane-public-schools-get-back-online-after-cyber-attack"
+      },
+      {
+        "label": "Security Magazine",
+        "url": "https://www.securitymagazine.com/articles/102596-spokane-public-schools-faces-cybersecurity-incident"
+      },
+      {
+        "label": "SOCRadar (NightSpire claim)",
+        "url": "https://socradar.io/data-breach/spokane-public-schools-targeted-by-nightspire-ransomware/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-11",
+    "updatedAt": "2026-11-11"
+  },
+  {
     "id": "new-plymouth",
     "name": "New Plymouth School District",
     "sector": "K-12",
@@ -36,18 +74,24 @@
     "dateApprox": false,
     "type": "other",
     "impacts": [
-      "outage"
+      "outage",
+      "extortion"
     ],
-    "summary": "An attack took down university networks, devices and cloud services. Staff were told to disconnect and shut down university devices. The university says its hospital was not affected.",
+    "summary": "An attack took down university networks, devices and cloud services, and staff and students were told to shut down devices and leave campus WiFi. A ransomware group called BYOD listed the university on its leak site and made claims about stolen data, which have not been verified. The university says its hospital was not affected.",
     "sources": [
       {
         "label": "Nashville Banner",
         "url": "https://nashvillebanner.com/2026/11/09/vanderbilt-university-cyberattack-byod"
+      },
+      {
+        "label": "The Record",
+        "url": "https://therecord.media/vanderbilt-cyberattack-ransomware-alert"
       }
     ],
     "status": "confirmed",
     "addedAt": "2026-11-11",
-    "updatedAt": "2026-11-11"
+    "updatedAt": "2026-11-11",
+    "actor": "BYOD ransomware group (claimed)"
   },
   {
     "id": "richmond",
