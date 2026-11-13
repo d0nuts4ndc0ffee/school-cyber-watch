@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-11-13",
+    "summary": "Routine check: no new incidents found. Vanderbilt's main systems and classes were restored by 10 November, and Springfield's record now reflects the district's report naming Interlock and confirming staff SSNs were taken.",
+    "added": [],
+    "updated": [
+      "vanderbilt",
+      "springfield"
+    ]
+  },
+  {
     "date": "2026-11-12",
     "summary": "Full-year review of 2026: added 32 US incidents going back to January (26 confirmed, 6 unconfirmed attacker claims). The tracker now covers the United States only; 12 international records moved to an archive file.",
     "added": [

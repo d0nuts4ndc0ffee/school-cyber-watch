@@ -111,7 +111,7 @@
       "outage",
       "extortion"
     ],
-    "summary": "An attack took down university networks, devices and cloud services, and staff and students were told to shut down devices and leave campus WiFi. A ransomware group called BYOD listed the university on its leak site and made claims about stolen data, which have not been verified. The university says its hospital was not affected.",
+    "summary": "An attack took down university networks, devices and cloud services, and staff and students were told to shut down devices and leave campus WiFi. By 10 November WiFi, email, Brightspace, Zoom and login services were back and classes resumed on the normal schedule, though some systems stayed restricted. A ransomware group called BYOD listed the university on its leak site and made claims about stolen data, which have not been verified. The university says its hospital was not affected.",
     "sources": [
       {
         "label": "Nashville Banner",
@@ -120,11 +120,19 @@
       {
         "label": "The Record",
         "url": "https://therecord.media/vanderbilt-cyberattack-ransomware-alert"
+      },
+      {
+        "label": "NewsChannel 5 (classes resume, systems restored)",
+        "url": "https://www.newschannel5.com/news/vanderbilt-university-resumes-normal-schedule-amid-after-campus-wide-cybersecurity-incident"
+      },
+      {
+        "label": "FOX 17 (systems back up)",
+        "url": "https://fox17.com/news/local/vanderbilt-universityreports-that-some-systems-are-back-up-after-cyberattack"
       }
     ],
     "status": "confirmed",
     "addedAt": "2026-11-11",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-13",
     "actor": "BYOD ransomware group (claimed)"
   },
   {
@@ -253,11 +261,11 @@
       "outage",
       "data"
     ],
-    "summary": "An attack over Labor Day weekend left about 70 schools without email, phones or records and closed them for four days. The FBI later told the district that personal data was taken. A federal report attributed the attack to the Interlock group.",
+    "summary": "An attack that began in mid-August and was found on 5 September, when servers were being encrypted, left about 70 schools without email, phones or records and closed them for four days. A district report to the state, prepared by its attorney, says the attacker is known to the FBI and names Interlock; stolen data was found posted on the dark web in mid-September. Staff and volunteer Social Security numbers are the most sensitive data believed taken, and credit monitoring is being offered. The district says it removed the attacker but is not yet back to full capacity.",
     "people": 26000,
     "peopleNote": "students enrolled; number with data exposed not stated",
     "closure": "4 school days",
-    "actor": "Interlock (per federal report)",
+    "actor": "Interlock (per district report to the state)",
     "sources": [
       {
         "label": "WBUR",
@@ -274,7 +282,7 @@
     ],
     "status": "confirmed",
     "addedAt": "2026-11-11",
-    "updatedAt": "2026-11-11"
+    "updatedAt": "2026-11-13"
   },
   {
     "id": "evanston",
