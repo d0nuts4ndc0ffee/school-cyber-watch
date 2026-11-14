@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-14",
+    "summary": "Added 2 incidents: Acadia Parish (Louisiana) shut down its systems on 11 November, and Barbour County (West Virginia) cut district internet in late October; classes continued in both. Richmond's record now includes the forensic audit and its scale.",
+    "added": [
+      "acadia-parish-school-system",
+      "barbour-county-schools"
+    ],
+    "updated": [
+      "richmond"
+    ]
+  },
+  {
     "date": "2026-11-13",
     "summary": "Routine check: no new incidents found. Vanderbilt's main systems and classes were restored by 10 November, and Springfield's record now reflects the district's report naming Interlock and confirming staff SSNs were taken.",
     "added": [],

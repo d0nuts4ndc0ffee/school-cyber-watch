@@ -1,5 +1,55 @@
 [
   {
+    "id": "acadia-parish-school-system",
+    "name": "Acadia Parish School System",
+    "sector": "K-12",
+    "place": "Crowley, Louisiana",
+    "country": "United States",
+    "state": "Louisiana",
+    "date": "2026-11-11",
+    "dateApprox": false,
+    "type": "other",
+    "impacts": [
+      "outage"
+    ],
+    "summary": "The district shut down its computer systems on 11 November to investigate a possible network compromise, and told families they would stay offline for the near future. Outside investigators were due on site on 12 November. Classes are continuing, and the district has not said whether any data was accessed or who is behind the incident.",
+    "people": 9000,
+    "peopleNote": "students enrolled across 27 schools",
+    "sources": [
+      {
+        "label": "DysruptionHub",
+        "url": "https://dysruptionhub.com/acadia-parish-louisiana-schools-cyber-shutdown/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-14",
+    "updatedAt": "2026-11-14"
+  },
+  {
+    "id": "barbour-county-schools",
+    "name": "Barbour County Schools",
+    "sector": "K-12",
+    "place": "Philippi, West Virginia",
+    "country": "United States",
+    "state": "West Virginia",
+    "date": "2026-10-23",
+    "dateApprox": true,
+    "type": "other",
+    "impacts": [
+      "outage"
+    ],
+    "summary": "After staff received suspicious emails, the district cut internet connectivity across its schools as a precaution and hired outside forensic specialists. The superintendent called it a potential cybersecurity incident and said he knew of no significant threat. Schools stayed open and moved to non-digital teaching; no data exposure or attacker has been reported.",
+    "sources": [
+      {
+        "label": "The Intermountain",
+        "url": "https://www.theintermountain.com/news/local-news/2026/10/potential-cybersecurity-incident-investigated-by-barbour-schools/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-14",
+    "updatedAt": "2026-11-14"
+  },
+  {
     "id": "frontline-education",
     "name": "Frontline Education",
     "sector": "Shared platform",
@@ -149,7 +199,7 @@
       "outage",
       "data"
     ],
-    "summary": "The district cut internet access across its schools after spotting suspicious activity and taught on paper for days. On 9 Nov it said data taken in the attack may have been posted on the dark web. The FBI and Virginia State Police are investigating, and free credit monitoring is on offer.",
+    "summary": "The district cut internet access across its schools after spotting suspicious activity and taught on paper for days. On 9 Nov it said data taken in the attack may have been posted on the dark web. A forensic audit is under way, a temporary network is in use while a permanent one is rebuilt, and free identity monitoring has reportedly been extended to former students and staff. The FBI and Virginia State Police are investigating.",
     "sources": [
       {
         "label": "WTVR CBS 6",
@@ -162,11 +212,17 @@
       {
         "label": "GovTech (stolen data posted to dark web)",
         "url": "https://www.govtech.com/education/k-12/hackers-posted-data-stolen-from-richmond-schools-to-dark-web"
+      },
+      {
+        "label": "WWBT 12 (forensic audit update)",
+        "url": "https://www.12onyourside.com/2026/11/11/richmond-public-schools-says-forensic-audit-is-underway-after-october-cyberattack/"
       }
     ],
     "status": "confirmed",
     "addedAt": "2026-11-11",
-    "updatedAt": "2026-11-12"
+    "updatedAt": "2026-11-14",
+    "people": 22000,
+    "peopleNote": "students enrolled across 50+ sites (district scale, not a count of people affected)"
   },
   {
     "id": "oneonta",
