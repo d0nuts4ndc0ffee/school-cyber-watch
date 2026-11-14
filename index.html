@@ -121,7 +121,7 @@ select{height:40px;padding:0 10px;border:1px solid var(--line);border-radius:8px
 
 /* Register + record */
 .main{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;margin:14px 0 28px;align-items:start}
-@media (min-width:900px){.main{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}}
+
 .count{font-size:13px;color:var(--muted);margin:0 0 8px}
 ul.list{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
 ul.list li+li{border-top:1px solid var(--line)}
@@ -141,7 +141,7 @@ ul.list li+li{border-top:1px solid var(--line)}
 .btn:disabled{opacity:.5;cursor:default}
 
 .record{padding:18px}
-@media (min-width:900px){aside{position:sticky;top:14px}}
+
 li .record{border-top:1px dashed var(--line);background:var(--bg)}
 .record h3{font:700 30px/1 var(--display);text-transform:uppercase;letter-spacing:.01em;margin:8px 0 4px;text-wrap:balance}
 .record .where{color:var(--muted);margin:0 0 12px}
@@ -172,6 +172,7 @@ dd{margin:0}
 .log{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
 .log li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px;font-size:14px;padding-top:10px;border-top:1px solid var(--line)}
 .log p{margin:0}
+.log li.more{display:none}.log.all li.more{display:grid}
 .log-date{color:var(--muted);font-size:12px;padding-top:2px}
 .log-links{color:var(--muted);font-size:13px;margin-top:4px!important}
 .linkish{background:none;border:0;padding:0;color:var(--link);text-decoration:underline;cursor:pointer;font-size:13px}
@@ -238,10 +239,8 @@ footer p{max-width:80ch;margin:0 0 8px}
       <p class="count" id="count" aria-live="polite"></p>
       <ul class="list" id="list"><li class="empty"><p>Loading incidents…</p></li></ul>
     </section>
-    <aside id="aside">
-      <section class="panel changes" id="changes" aria-live="polite"></section>
-      <article class="panel record" id="record"></article>
-    </aside>
+    <section class="panel changes" id="changes" aria-live="polite"></section>
+    <article class="panel record" id="record" hidden></article>
   </div>
 </div>
 
@@ -281,10 +280,9 @@ const isNew = r => r.addedAt !== LAUNCH && fresh(r.addedAt);
 const isUpdated = r => !isNew(r) && r.updatedAt && r.updatedAt !== r.addedAt && fresh(r.updatedAt);
 const big = n => n >= 1e6 ? (n/1e6).toFixed(n >= 1e7 ? 0 : 1).replace(/\.0$/,'') + 'M' : n >= 1e3 ? Math.round(n/1e3) + 'K' : String(n);
 
-const state = {q:'', type:'all', sector:'all', closure:false, unconf:false, loc:'us', sort:'new', sel:null};
+const state = {q:'', type:'all', sector:'all', closure:false, unconf:false, loc:'us', sort:'new', sel:null, closed:false};
 const isUS = r => r.country === 'United States' || r.country === 'Worldwide';
 const inLoc = (r, loc = state.loc) => loc === 'all' ? true : loc === 'us' ? isUS(r) : loc === 'intl' ? !isUS(r) : r.country === 'United States' && r.state === loc.slice(3);
-const wide = window.matchMedia('(min-width: 900px)');
 
 function filtered(){
   const q = state.q.trim().toLowerCase();
@@ -329,16 +327,16 @@ function renderChanges(){
     ? `<p class="warn">The latest daily check did not finish. Records shown are from the last successful update.</p>` : '';
   const byId = Object.fromEntries(DATA.map(r => [r.id, r]));
   const link = id => byId[id] ? `<button class="linkish" type="button" data-goto="${esc(id)}">${esc(byId[id].name)}</button>` : '';
-  const entries = LOG.slice(0, 7).map(e => {
+  const entries = LOG.slice(0, 7).map((e, i) => {
     const added = (e.added||[]).filter(id => byId[id]);
     const updated = (e.updated||[]).filter(id => byId[id]);
     const showLinks = added.length && added.length <= 6;
-    return `<li><span class="log-date mono">${esc(fmtDay.format(ts(e.date)))}</span>
+    return `<li${i >= 3 ? ' class="more"' : ''}><span class="log-date mono">${esc(fmtDay.format(ts(e.date)))}</span>
       <div><p>${esc(e.summary)}</p>
       ${showLinks ? `<p class="log-links">Added: ${added.map(link).join(', ')}</p>` : ''}
       ${updated.length ? `<p class="log-links">Updated: ${updated.map(link).join(', ')}</p>` : ''}</div></li>`;
   }).join('');
-  $('#changes').innerHTML = `<h2>What changed</h2>${warn}<p class="hint">Checked every morning for new incidents. New finds stay marked <span class="unconf">Unconfirmed</span> until a second source or an official notice backs them up.</p>${entries ? `<ul class="log">${entries}</ul>` : '<p class="hint">No updates yet.</p>'}`;
+  $('#changes').innerHTML = `<h2>What changed</h2>${warn}<p class="hint">Checked every morning for new incidents. New finds stay marked <span class="unconf">Unconfirmed</span> until a second source or an official notice backs them up.</p>${entries ? `<ul class="log" id="log">${entries}</ul>${LOG.length > 3 ? '<button class="btn ghost" type="button" id="moreLog" style="margin-top:12px">Show earlier updates</button>' : ''}` : '<p class="hint">No updates yet.</p>'}`;
 }
 
 function renderControls(){
@@ -442,7 +440,7 @@ function render(){
   $('#count').textContent = rows.length === scope ? `Showing all ${scope} incidents` : `Showing ${rows.length} of ${scope} incidents`;
   const list = $('#list');
   const record = $('#record');
-  if (wide.matches) $('#aside').appendChild(record);
+  document.querySelector('.main').appendChild(record);
   list.innerHTML = rows.length ? rows.map(r => `
     <li><button class="row" data-id="${esc(r.id)}" aria-pressed="${r.id === state.sel}" style="--t:var(--t-${r.type})">
       <span class="stripe"></span>
@@ -451,13 +449,11 @@ function render(){
       <span class="row-side"><span class="pill">${TYPES[r.type].label}</span><span class="row-date">${dateShort(r)}</span></span>
     </button></li>`).join('')
     : `<li class="empty"><p>No incidents match these filters.</p><button class="btn ghost" type="button" id="clearBtn">Clear filters</button></li>`;
-  record.hidden = !rows.length;
-  if (rows.length){
+  record.hidden = !rows.length || state.closed;
+  if (rows.length && !state.closed){
     record.innerHTML = recordHTML(DATA.find(r => r.id === state.sel));
-    if (!wide.matches){
-      const li = list.querySelector(`.row[data-id="${CSS.escape(state.sel)}"]`)?.parentElement;
-      if (li) li.appendChild(record);
-    }
+    const li = list.querySelector(`.row[data-id="${CSS.escape(state.sel)}"]`)?.parentElement;
+    if (li) li.appendChild(record);
   }
   renderTimeline(match);
 }
@@ -468,6 +464,7 @@ function clearFilters(){
 }
 
 function select(id, scroll){
+  state.closed = false;
   state.sel = id;
   if (!filtered().some(r => r.id === id)) clearFilters();
   if (!filtered().some(r => r.id === id)){ state.loc = 'all'; $('#loc').value = 'all'; }
@@ -482,9 +479,10 @@ document.addEventListener('click', e => {
   else if (t.dataset.sector){ state.sector = t.dataset.sector; render(); }
   else if (t.id === 'closureChip'){ state.closure = !state.closure; render(); }
   else if (t.id === 'unconfChip'){ state.unconf = !state.unconf; render(); }
-  else if (t.classList.contains('row')) select(t.dataset.id);
+  else if (t.classList.contains('row')){ if (t.dataset.id === state.sel && !state.closed){ state.closed = true; render(); } else select(t.dataset.id); }
   else if (t.classList.contains('tl-dot')) select(t.dataset.id, true);
   else if (t.dataset.goto) select(t.dataset.goto, true);
+  else if (t.id === 'moreLog'){ const l = $('#log'); l.classList.toggle('all'); t.textContent = l.classList.contains('all') ? 'Show fewer updates' : 'Show earlier updates'; }
   else if (t.id === 'clearBtn'){ clearFilters(); render(); }
   else if (t.id === 'copyBtn'){
     const r = DATA.find(x => x.id === state.sel);
@@ -510,7 +508,6 @@ document.querySelector('.theme').addEventListener('click', e => {
 });
 syncTheme();
 $('#sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
-wide.addEventListener('change', () => DATA.length && render());
 let rz; new ResizeObserver(() => { clearTimeout(rz); rz = setTimeout(() => DATA.length && renderTimeline(new Set(filtered().map(r => r.id))), 80); }).observe($('#plot'));
 
 
