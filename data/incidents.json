@@ -1,5 +1,35 @@
 [
   {
+    "id": "ridgway-school-district-r-2",
+    "name": "Ridgway School District R-2",
+    "sector": "K-12",
+    "place": "Ridgway, Colorado",
+    "country": "United States",
+    "state": "Colorado",
+    "date": "2026-11-10",
+    "dateApprox": false,
+    "type": "ransom",
+    "impacts": [
+      "data",
+      "extortion"
+    ],
+    "summary": "The Interlock ransomware group has listed Ridgway High School on its leak site, claiming it stole student and employee records including Social Security numbers, medical and disciplinary files. The school district has not publicly confirmed an attack, and the claim has not been independently verified. The date is when the claim was posted, not necessarily when systems were breached.",
+    "actor": "Interlock (claimed)",
+    "sources": [
+      {
+        "label": "DeXpose (Interlock claim)",
+        "url": "https://www.dexpose.io/interlock-ransomware-hits-ridgway-high-school/"
+      },
+      {
+        "label": "SOCRadar victim listing",
+        "url": "https://socradar.io/free-tools/ransomware-intelligence/victims/ridgway-high-school-interlock-c9e2786f"
+      }
+    ],
+    "status": "unconfirmed",
+    "addedAt": "2026-11-17",
+    "updatedAt": "2026-11-17"
+  },
+  {
     "id": "acadia-parish-school-system",
     "name": "Acadia Parish School System",
     "sector": "K-12",
@@ -199,7 +229,7 @@
       "outage",
       "data"
     ],
-    "summary": "The district cut internet access across its schools after spotting suspicious activity and taught on paper for days. On 9 Nov it said data taken in the attack may have been posted on the dark web. A forensic audit is under way, a temporary network is in use while a permanent one is rebuilt, and free identity monitoring has reportedly been extended to former students and staff. The FBI and Virginia State Police are investigating.",
+    "summary": "The district cut internet access across its schools after spotting suspicious activity and taught on paper for days. On 9 Nov it said data taken in the attack may have been posted on the dark web. A forensic audit is under way, a temporary network is in use while a permanent one is rebuilt, and free identity monitoring has reportedly been extended to former students and staff. The FBI and Virginia State Police are investigating. In an update to families the district said the people behind the attack claim to hold dates of birth, addresses, phone and passport numbers, Social Security numbers and limited medical details, and the superintendent has since spoken publicly about the dark-web posting.",
     "sources": [
       {
         "label": "WTVR CBS 6",
@@ -216,11 +246,15 @@
       {
         "label": "WWBT 12 (forensic audit update)",
         "url": "https://www.12onyourside.com/2026/11/11/richmond-public-schools-says-forensic-audit-is-underway-after-october-cyberattack/"
+      },
+      {
+        "label": "WTVR CBS 6 (superintendent responds)",
+        "url": "https://www.wtvr.com/news/local-news/richmond/kamras-responds-cyberattack-nov-13-2026"
       }
     ],
     "status": "confirmed",
     "addedAt": "2026-11-11",
-    "updatedAt": "2026-11-14",
+    "updatedAt": "2026-11-17",
     "people": 22000,
     "peopleNote": "students enrolled across 50+ sites (district scale, not a count of people affected)"
   },

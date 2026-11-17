@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-11-17",
+    "summary": "Added 1 unconfirmed incident: Interlock claims a data theft at Ridgway School District R-2 in Colorado, with no district confirmation yet. Richmond's record now lists the data types the attackers claim to hold.",
+    "added": [
+      "ridgway-school-district-r-2"
+    ],
+    "updated": [
+      "richmond"
+    ]
+  },
+  {
     "date": "2026-11-14",
     "summary": "Added 2 incidents: Acadia Parish (Louisiana) shut down its systems on 11 November, and Barbour County (West Virginia) cut district internet in late October; classes continued in both. Richmond's record now includes the forensic audit and its scale.",
     "added": [
