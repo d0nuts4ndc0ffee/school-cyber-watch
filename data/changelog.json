@@ -1,5 +1,13 @@
 [
   {
+    "date": "2026-11-18",
+    "summary": "Routine check: no new US incidents found. Vanderbilt's record now notes a proposed class action over the breach and the university's warning that full recovery may take weeks.",
+    "added": [],
+    "updated": [
+      "vanderbilt"
+    ]
+  },
+  {
     "date": "2026-11-17",
     "summary": "Added 1 unconfirmed incident: Interlock claims a data theft at Ridgway School District R-2 in Colorado, with no district confirmation yet. Richmond's record now lists the data types the attackers claim to hold.",
     "added": [

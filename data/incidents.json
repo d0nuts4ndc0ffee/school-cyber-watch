@@ -191,7 +191,7 @@
       "outage",
       "extortion"
     ],
-    "summary": "An attack took down university networks, devices and cloud services, and staff and students were told to shut down devices and leave campus WiFi. By 10 November WiFi, email, Brightspace, Zoom and login services were back and classes resumed on the normal schedule, though some systems stayed restricted. A ransomware group called BYOD listed the university on its leak site and made claims about stolen data, which have not been verified. The university says its hospital was not affected.",
+    "summary": "An attack took down university networks, devices and cloud services, and staff and students were told to shut down devices and leave campus WiFi. By 10 November WiFi, email, Brightspace, Zoom and login services were back and classes resumed on the normal schedule, though some systems stayed restricted. A ransomware group called BYOD listed the university on its leak site and made claims about stolen data, which have not been verified. The university says its hospital was not affected. On 12 November the university said full normal operations could take several weeks and told everyone to change their passwords. A proposed class action filed 9 November in federal court alleges negligence; it cites the group's unverified claim of more than a million Social Security numbers.",
     "sources": [
       {
         "label": "Nashville Banner",
@@ -208,11 +208,15 @@
       {
         "label": "FOX 17 (systems back up)",
         "url": "https://fox17.com/news/local/vanderbilt-universityreports-that-some-systems-are-back-up-after-cyberattack"
+      },
+      {
+        "label": "FOX 17 (class action, password reset)",
+        "url": "https://fox17.com/news/local/vanderbilt-lawsuit-alleges-data-security-failures-as-university-orders-password-updates"
       }
     ],
     "status": "confirmed",
     "addedAt": "2026-11-11",
-    "updatedAt": "2026-11-13",
+    "updatedAt": "2026-11-18",
     "actor": "BYOD ransomware group (claimed)"
   },
   {
