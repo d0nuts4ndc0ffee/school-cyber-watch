@@ -1,5 +1,13 @@
 [
   {
+    "date": "2026-11-19",
+    "summary": "Added Michigan State University: it confirmed suspicious activity and a campus-wide password reset on 1 October, and the BYOD group later claimed data on 1.3 million people (unverified). No new closures found elsewhere.",
+    "added": [
+      "michigan-state-university"
+    ],
+    "updated": []
+  },
+  {
     "date": "2026-11-18",
     "summary": "Routine check: no new US incidents found. Vanderbilt's record now notes a proposed class action over the breach and the university's warning that full recovery may take weeks.",
     "added": [],

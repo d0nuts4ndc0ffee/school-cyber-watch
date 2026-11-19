@@ -1,5 +1,34 @@
 [
   {
+    "id": "michigan-state-university",
+    "name": "Michigan State University",
+    "sector": "Higher ed",
+    "place": "East Lansing, Michigan",
+    "country": "United States",
+    "state": "Michigan",
+    "date": "2026-10-01",
+    "dateApprox": false,
+    "type": "access",
+    "impacts": [
+      "extortion"
+    ],
+    "summary": "On 1 October the university told students, faculty and staff about suspicious activity and forced everyone to reset their NetID password, describing it as a possible credential compromise. It says it has found no evidence that its central login directory was breached or that personal data was stolen, and no outages or closures were reported. In early November the BYOD ransomware group listed the university on its leak site, claiming data on 1.3 million current and former students; this is unverified, and it is not established that the claim relates to the October incident.",
+    "actor": "BYOD ransomware group (claimed)",
+    "sources": [
+      {
+        "label": "The Record",
+        "url": "https://therecord.media/michigan-state-university-byod-gang-cyber-incident"
+      },
+      {
+        "label": "WWMT / ABC News 4",
+        "url": "https://abcnews4.com/news/nation-world/ransomware-group-claims-theft-of-data-tied-to-13m-spartans-as-msu-investigates"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-19",
+    "updatedAt": "2026-11-19"
+  },
+  {
     "id": "ridgway-school-district-r-2",
     "name": "Ridgway School District R-2",
     "sector": "K-12",
