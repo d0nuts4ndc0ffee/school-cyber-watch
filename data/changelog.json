@@ -1,5 +1,13 @@
 [
   {
+    "date": "2026-11-21",
+    "summary": "Added Perry Local Schools (Stark County, Ohio): a malware-related cyber incident closed all schools for one day on 16 November; the district reports no evidence personal data was extracted. No other new US incidents found.",
+    "added": [
+      "perry-local-schools"
+    ],
+    "updated": []
+  },
+  {
     "date": "2026-11-19",
     "summary": "Added Michigan State University: it confirmed suspicious activity and a campus-wide password reset on 1 October, and the BYOD group later claimed data on 1.3 million people (unverified). No new closures found elsewhere.",
     "added": [

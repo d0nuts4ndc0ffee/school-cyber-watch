@@ -1,5 +1,39 @@
 [
   {
+    "id": "perry-local-schools",
+    "name": "Perry Local Schools",
+    "sector": "K-12",
+    "place": "Perry Township (Stark County), Ohio",
+    "country": "United States",
+    "state": "Ohio",
+    "date": "2026-11-15",
+    "dateApprox": false,
+    "type": "other",
+    "impacts": [
+      "closure",
+      "outage"
+    ],
+    "summary": "The district announced a cybersecurity incident on 15 November that disrupted its technology systems, including phones and internet, and closed all schools on Monday 16 November. Classes resumed on 17 November. The district later said the cause was malware and that it has seen no evidence personal data was taken. The Ohio Cyber Reserve is helping investigate, and some technology stayed limited during recovery.",
+    "closure": "1 school day",
+    "sources": [
+      {
+        "label": "Spectrum News 1",
+        "url": "https://spectrumnews1.com/oh/columbus/news/2026/11/16/perry-local-schools-warns-of-cybersecurity-incident"
+      },
+      {
+        "label": "News 5 Cleveland",
+        "url": "https://www.news5cleveland.com/news/local-news/state-cybersecurity-volunteer-force-investigating-incident-that-shut-down-perry-local-schools"
+      },
+      {
+        "label": "Cleveland 19",
+        "url": "https://www.cleveland19.com/2026/11/19/stark-county-school-district-says-malware-caused-cyber-incident/"
+      }
+    ],
+    "status": "confirmed",
+    "addedAt": "2026-11-21",
+    "updatedAt": "2026-11-21"
+  },
+  {
     "id": "michigan-state-university",
     "name": "Michigan State University",
     "sector": "Higher ed",
