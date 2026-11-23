@@ -1,5 +1,13 @@
 [
   {
+    "date": "2026-11-23",
+    "summary": "Added 1 unconfirmed incident: Interlock claims a data theft at Meadows Valley School District in Idaho, with no district confirmation yet. No other new US incidents found.",
+    "added": [
+      "meadows-valley-school-district"
+    ],
+    "updated": []
+  },
+  {
     "date": "2026-11-21",
     "summary": "Added Perry Local Schools (Stark County, Ohio): a malware-related cyber incident closed all schools for one day on 16 November; the district reports no evidence personal data was extracted. No other new US incidents found.",
     "added": [

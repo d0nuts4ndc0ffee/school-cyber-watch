@@ -1,5 +1,31 @@
 [
   {
+    "id": "meadows-valley-school-district",
+    "name": "Meadows Valley School District",
+    "sector": "K-12",
+    "place": "New Meadows, Idaho",
+    "country": "United States",
+    "state": "Idaho",
+    "date": "2026-11-03",
+    "dateApprox": false,
+    "type": "ransom",
+    "impacts": [
+      "data",
+      "extortion"
+    ],
+    "summary": "A leak-site listing attributed to the Interlock ransomware group names Meadows Valley School District in Idaho, with a claimed 50 GB of stolen files. The district has not publicly confirmed an attack and the claim is unverified. The date is when the claim was reported, not necessarily when systems were breached.",
+    "actor": "Interlock (claimed)",
+    "sources": [
+      {
+        "label": "Breachsense (Interlock claim)",
+        "url": "https://www.breachsense.com/breaches/meadows-valley-school-district-data-breach/"
+      }
+    ],
+    "status": "unconfirmed",
+    "addedAt": "2026-11-23",
+    "updatedAt": "2026-11-23"
+  },
+  {
     "id": "perry-local-schools",
     "name": "Perry Local Schools",
     "sector": "K-12",
