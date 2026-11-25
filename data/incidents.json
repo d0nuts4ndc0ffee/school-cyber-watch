@@ -745,17 +745,21 @@
     "impacts": [
       "extortion"
     ],
-    "summary": "The Qilin ransomware group listed the district on its leak site and threatened to publish data. The district has not publicly confirmed an attack.",
+    "summary": "The Qilin ransomware group listed the district on its leak site and threatened to publish data. In a February 2026 notice filed with the Massachusetts attorney general, the district said a recent incident may have affected personal information and offered affected people 24 months of credit monitoring. The notice does not say how many people were affected or what data was involved.",
     "actor": "Qilin (claimed)",
     "sources": [
       {
         "label": "DeXpose",
         "url": "https://www.dexpose.io/qilin-ransomware-targets-medinah-school-district-11/"
+      },
+      {
+        "label": "Medinah SD 11 notice (Massachusetts AG)",
+        "url": "https://www.mass.gov/doc/2026-278-medinah-school-district-11/download"
       }
     ],
-    "status": "unconfirmed",
+    "status": "confirmed",
     "addedAt": "2026-11-12",
-    "updatedAt": "2026-11-12"
+    "updatedAt": "2026-11-25"
   },
   {
     "id": "lakeside-union-school-district",
