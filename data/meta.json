@@ -1,6 +1,6 @@
 {
-  "lastRunAt": "2026-11-26T10:48:56Z",
+  "lastRunAt": "2026-11-27T10:49:02Z",
   "lastRunStatus": "ok",
-  "lastRunSummary": "Routine check: ran 16 US searches; no new US incidents found and no new developments on existing records (Vanderbilt, Michigan State, Richmond, Perry Local, Ridgway, Meadows Valley). Hits such as Zion and South Lyon date from 2025 and were not added.",
+  "lastRunSummary": "Routine check: ran 14 US searches; no new US incidents found and no new developments on existing records (Vanderbilt, Richmond, Perry Local, Ridgway, Meadows Valley, Michigan State). Hits such as Harvard (2025), Concord and Long Beach date from earlier years and were not added.",
   "coverageStart": "2026-01-01"
 }
