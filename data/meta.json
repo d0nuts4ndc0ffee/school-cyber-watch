@@ -1,6 +1,6 @@
 {
-  "lastRunAt": "2026-11-27T10:49:02Z",
+  "lastRunAt": "2026-11-28T10:47:53Z",
   "lastRunStatus": "ok",
-  "lastRunSummary": "Routine check: ran 14 US searches; no new US incidents found and no new developments on existing records (Vanderbilt, Richmond, Perry Local, Ridgway, Meadows Valley, Michigan State). Hits such as Harvard (2025), Concord and Long Beach date from earlier years and were not added.",
+  "lastRunSummary": "Routine check: ran 18 US searches; no new US incidents found and no confirmed new developments on existing records (Richmond, Perry Local, Michigan State, Meadows Valley, Ridgway, Vanderbilt). Hits such as Buffalo, Baltimore County, Uvalde and Harvard date from earlier years and were not added.",
   "coverageStart": "2026-01-01"
 }
